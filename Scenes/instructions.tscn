@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://6apg5ckl0b12"]
+
+[ext_resource type="Script" path="res://Scenes/instructions.gd" id="1_tjoki"]
+[ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="2_dluq3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4idfx"]
+font = ExtResource("2_dluq3")
+font_size = 200
+font_color = Color(1, 0.596078, 0.74902, 1)
+outline_size = 105
+outline_color = Color(1, 1, 0.909804, 1)
+shadow_size = 87
+shadow_color = Color(0.203922, 0.203922, 0.203922, 1)
+shadow_offset = Vector2(30.41, 29.785)
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tjoki")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 104.0
+offset_top = 164.0
+offset_right = 616.0
+offset_bottom = 1116.0
+
+[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Cerdo"
+label_settings = SubResource("LabelSettings_4idfx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "Lorem Ipsum
+"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,4 +1,17 @@
-[gd_scene format=3 uid="uid://dalxufw6oghf8"]
+[gd_scene load_steps=4 format=3 uid="uid://dalxufw6oghf8"]
+
+[ext_resource type="Script" path="res://Scripts/app.gd" id="1_1wiqn"]
+[ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="1_hnmkt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4idfx"]
+font = ExtResource("1_hnmkt")
+font_size = 200
+font_color = Color(1, 0.596078, 0.74902, 1)
+outline_size = 105
+outline_color = Color(1, 1, 0.909804, 1)
+shadow_size = 87
+shadow_color = Color(0.203922, 0.203922, 0.203922, 1)
+shadow_offset = Vector2(30.41, 29.785)
 
 [node name="App" type="Control"]
 layout_mode = 3
@@ -7,3 +20,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1wiqn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 104.0
+offset_top = 162.0
+offset_right = 616.0
+offset_bottom = 1118.0
+
+[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Cerdo"
+label_settings = SubResource("LabelSettings_4idfx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Play"
+
+[node name="InstructionsButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Instructions"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
