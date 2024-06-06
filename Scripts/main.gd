@@ -23,7 +23,7 @@ func _process(delta):
 	pass
 
 func _on_back_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/app.tscn")
 
 func _on_roll_button_pressed():
 	dice_value = random.randi_range(1, 6)
