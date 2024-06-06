@@ -1,0 +1,126 @@
+[gd_scene load_steps=4 format=3 uid="uid://fb1hsron3wl3"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_yek6o"]
+[ext_resource type="LabelSettings" uid="uid://cuqtmgbcktie8" path="res://Assets/title_text_settings.tres" id="2_tmmpw"]
+[ext_resource type="Texture2D" uid="uid://bnvwv2wke4daw" path="res://Assets/icon.svg" id="3_dgars"]
+
+[node name="App" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yek6o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 70)
+offset_right = 200.0
+offset_bottom = 70.0
+text = "< Return To Menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TotalScoreLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "TOTAL SCORE"
+label_settings = ExtResource("2_tmmpw")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Player1Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Player 1:"
+label_settings = ExtResource("2_tmmpw")
+
+[node name="Player1ScoreLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("2_tmmpw")
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60.065, 0)
+layout_mode = 2
+
+[node name="Player2Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Player 2:"
+label_settings = ExtResource("2_tmmpw")
+
+[node name="Player2ScoreLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("2_tmmpw")
+
+[node name="PlayerTurnHBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="PlayerTurnTexture" type="TextureRect" parent="CanvasLayer/VBoxContainer/PlayerTurnHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_dgars")
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="CurrentPlayLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Current Play"
+label_settings = ExtResource("2_tmmpw")
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="CurrentSumLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("2_tmmpw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HoldButton" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "HOLD!"
+
+[node name="Control2" type="Control" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("3_dgars")
+stretch_mode = 4
+
+[node name="RollButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Roll
+"
