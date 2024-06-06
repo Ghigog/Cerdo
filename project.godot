@@ -11,5 +11,20 @@ config_version=5
 [application]
 
 config/name="Cerdo"
+config/description="A little test project about a dice game!"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="CerdoSaveFiles"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/cerdo_icon.png"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/window_width_override=480
+window/size/window_height_override=853
+window/handheld/orientation=1
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
