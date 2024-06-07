@@ -42,8 +42,10 @@ func _on_hold_button_pressed():
 	player_1_score_label.text = str(Global.player_scores[0])
 	player_2_score_label.text = str(Global.player_scores[1])
 	if Global.player_scores[Global.turn] >= 100:
-		print("TODO: move to end screen")
-		print("omg you did congrats :0000")
+		Global.last_winner = Global.turn
+		for score in len(Global.player_scores):
+			Global.player_scores[score] = 0
+		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 	_swap_players()
 
 func _swap_players():

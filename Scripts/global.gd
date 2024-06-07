@@ -9,3 +9,5 @@ var turn: int = 0
 
 func quit_game():
 	get_tree().quit()
+
+var last_winner : int = 0
