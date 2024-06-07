@@ -15,6 +15,8 @@ var random = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	refresh_score()
+	refresh_turn()
 	random.randomize()
 
 
@@ -39,19 +41,27 @@ func _on_roll_button_pressed():
 
 func _on_hold_button_pressed():
 	Global.player_scores[Global.turn] += current_score
-	player_1_score_label.text = str(Global.player_scores[0])
-	player_2_score_label.text = str(Global.player_scores[1])
+	refresh_score()
 	if Global.player_scores[Global.turn] >= 100:
 		Global.last_winner = Global.turn
 		for score in len(Global.player_scores):
 			Global.player_scores[score] = 0
 		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 	_swap_players()
+	Global.save_game()
 
 func _swap_players():
 	Global.turn = 1 if Global.turn == 0 else 0
 	current_score = 0
 	current_score_label.text = str(current_score)
+	refresh_turn()
+
+func refresh_score():
+	player_1_score_label.text = str(Global.player_scores[0])
+	player_2_score_label.text = str(Global.player_scores[1])
+	refresh_turn()
+
+func refresh_turn():
 	player_turn_h_box_container.alignment = (
 		player_turn_h_box_container.ALIGNMENT_BEGIN
 		if Global.turn == 0 else
