@@ -1,7 +1,7 @@
 class_name CPU
 extends Node
 
-enum DECISION {HOLD = 0, ROLL = 1}
+enum DECISION {HOLD, ROLL}
 
 func decide():
 	pass
