@@ -53,6 +53,7 @@ func _on_roll_button_pressed():
 		current_score_label.text = str(current_score)
 
 func _on_hold_button_pressed():
+	print("cpu holding")
 	Global.player_scores[Global.turn] += current_score
 	refresh_score()
 	if Global.player_scores[Global.turn] >= 100:
@@ -68,10 +69,12 @@ func _swap_players():
 	current_score = 0
 	current_score_label.text = str(current_score)
 	var cpu_turn = (Global.second_player == 1) and (Global.turn == 1)
+	print("cpu_turn = ", cpu_turn)
 	roll_button.disabled = cpu_turn
 	hold_button.disabled = cpu_turn
 	refresh_turn()
 	if cpu_turn:
+		#print("cpu_turn")
 		cpu_play()
 
 func refresh_score():
@@ -87,17 +90,20 @@ func refresh_turn():
 	)
 	
 func cpu_play():
-	var cpu = cpu_personalities[Global.cpu_personality].new()
-	var decision = BaseCpu.DECISION.ROLL
+	print("cpu_play is being activated")
 	#while decision != BaseCpu.DECISION.HOLD and Global.turn == 1:
 	if Global.turn == 1:
-		print("Lets roll" if decision == BaseCpu.DECISION.ROLL else "I will hold")
-		if decision == BaseCpu.DECISION.HOLD:
+		var cpu = cpu_personalities[Global.cpu_personality].new()
+		var decision = cpu.decide()
+		print("Lets roll" if decision == cpu.DECISION.ROLL else "I will hold")
+		if decision == cpu.DECISION.HOLD:
 			_on_hold_button_pressed()
 		else:
-			_on_roll_button_pressed()		
-		decision = cpu.decide()
-		timer.start(2)
+			_on_roll_button_pressed()
+			if Global.turn == 1:
+				timer.start(2)
+		#decision = cpu.decide()
+		
 
 func _on_timer_timeout():
 	cpu_play()
