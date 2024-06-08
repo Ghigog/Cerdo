@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch01d7d014wl4"]
+[gd_scene load_steps=6 format=3 uid="uid://ch01d7d014wl4"]
 
 [ext_resource type="Script" path="res://Scripts/end_screen.gd" id="1_oob11"]
 [ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="2_5hqbl"]
+[ext_resource type="PackedScene" uid="uid://cfvdsu8ij2ojg" path="res://Scenes/anim_background.tscn" id="3_3xf1s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4idfx"]
 font = ExtResource("2_5hqbl")
@@ -25,6 +26,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oob11")
+
+[node name="Background" parent="." instance=ExtResource("3_3xf1s")]
+layout_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

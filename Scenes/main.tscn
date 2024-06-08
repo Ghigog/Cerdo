@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://fb1hsron3wl3"]
+[gd_scene load_steps=6 format=3 uid="uid://fb1hsron3wl3"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yek6o"]
 [ext_resource type="LabelSettings" uid="uid://cuqtmgbcktie8" path="res://Assets/title_text_settings.tres" id="2_tmmpw"]
-[ext_resource type="Texture2D" uid="uid://bnvwv2wke4daw" path="res://Assets/icon.svg" id="3_dgars"]
+[ext_resource type="Texture2D" uid="uid://bifnu3pfagcyv" path="res://Assets/DiceImages/dice1.svg" id="4_4vuc5"]
+[ext_resource type="Texture2D" uid="uid://rnale02jvivo" path="res://Assets/arrow2.png" id="4_ucb5p"]
+[ext_resource type="PackedScene" uid="uid://cfvdsu8ij2ojg" path="res://Scenes/anim_background.tscn" id="5_nk20s"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -12,6 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yek6o")
+
+[node name="Background" parent="." instance=ExtResource("5_nk20s")]
+layout_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -63,8 +68,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="PlayerTurnTexture" type="TextureRect" parent="CanvasLayer/VBoxContainer/PlayerTurnHBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("3_dgars")
+texture = ExtResource("4_ucb5p")
+expand_mode = 1
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 250)
@@ -108,7 +115,7 @@ layout_mode = 2
 [node name="DiceTexture" type="TextureRect" parent="CanvasLayer/VBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-texture = ExtResource("3_dgars")
+texture = ExtResource("4_4vuc5")
 expand_mode = 2
 stretch_mode = 4
 
