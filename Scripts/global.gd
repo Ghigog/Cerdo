@@ -9,6 +9,10 @@ var player_scores = [
 # Can either be 0 (for player one) or 1 (for player two)
 var turn: int = 0
 
+#Variables for IA
+var second_player = 0
+var cpu_personality = 0
+
 func quit_game():
 	get_tree().quit()
 

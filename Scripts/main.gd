@@ -7,11 +7,24 @@ extends Control
 @onready var player_1_score_label = $CanvasLayer/VBoxContainer/HBoxContainer/Player1ScoreLabel
 @onready var player_2_score_label = $CanvasLayer/VBoxContainer/HBoxContainer/Player2ScoreLabel
 
+@onready var hold_button = $CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton
+@onready var roll_button = $CanvasLayer/VBoxContainer/RollButton
+
+@onready var timer = $CanvasLayer/Timer
+
+
+const BaseCpu = preload("res://Scripts/cpu/base_cpu.gd")
+const RandomCpu = preload("res://Scripts/cpu/random_cpu.gd")
 
 var dice_value: int = 0
 var current_score: int = 0
 
 var random = RandomNumberGenerator.new()
+
+
+const cpu_personalities = [
+	RandomCpu
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,7 +67,12 @@ func _swap_players():
 	Global.turn = 1 if Global.turn == 0 else 0
 	current_score = 0
 	current_score_label.text = str(current_score)
+	var cpu_turn = (Global.second_player == 1) and (Global.turn == 1)
+	roll_button.disabled = cpu_turn
+	hold_button.disabled = cpu_turn
 	refresh_turn()
+	if cpu_turn:
+		cpu_play()
 
 func refresh_score():
 	player_1_score_label.text = str(Global.player_scores[0])
@@ -67,3 +85,19 @@ func refresh_turn():
 		if Global.turn == 0 else
 		player_turn_h_box_container.ALIGNMENT_END
 	)
+	
+func cpu_play():
+	var cpu = cpu_personalities[Global.cpu_personality].new()
+	var decision = BaseCpu.DECISION.ROLL
+	#while decision != BaseCpu.DECISION.HOLD and Global.turn == 1:
+	if Global.turn == 1:
+		print("Lets roll" if decision == BaseCpu.DECISION.ROLL else "I will hold")
+		if decision == BaseCpu.DECISION.HOLD:
+			_on_hold_button_pressed()
+		else:
+			_on_roll_button_pressed()		
+		decision = cpu.decide()
+		timer.start(2)
+
+func _on_timer_timeout():
+	cpu_play()

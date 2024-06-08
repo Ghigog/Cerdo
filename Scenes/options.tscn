@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://dels71r4tebxs"]
+
+[ext_resource type="Script" path="res://Scripts/options.gd" id="1_ihtp3"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ihtp3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 104.0
+offset_top = 162.0
+offset_right = 616.0
+offset_bottom = 1118.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.580392, 0.72549, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 91
+text = "Options"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SecondPlayerLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "Second Player
+"
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+item_count = 2
+selected = 0
+popup/item_0/text = "Human"
+popup/item_0/id = 0
+popup/item_1/text = "CPU"
+popup/item_1/id = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SecondPlayerLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "CPU Personality
+"
+
+[node name="CPUButton" type="OptionButton" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+item_count = 1
+selected = 0
+popup/item_0/text = "Random"
+popup/item_0/id = 0
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 61.195)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Return to Menu
+"
+
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/HBoxContainer2/CPUButton" to="." method="_on_cpu_button_item_selected"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
