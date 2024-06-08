@@ -125,6 +125,9 @@ offset_right = 200.0
 offset_bottom = 70.0
 text = "< Return To Menu"
 
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton" to="." method="_on_hold_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/RollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]
+[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
