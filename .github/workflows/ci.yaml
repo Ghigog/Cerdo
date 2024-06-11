@@ -30,6 +30,8 @@ jobs:
           # see: https://github.com/bitwes/Gut/issues/589
           $GODOT_BIN -d $GODOT_PARAMS --path $PWD --import
 
+          echo "GUT_PARAMS=$GUT_PARAMS"
+
           $GODOT_BIN -d $GODOT_PARAMS --path $PWD -s addons/gut/gut_cmdln.gd $GUT_PARAMS 2>&1 | tee $GUT_TEMP_FILE
 
           # Godot always exists with error 0, but we want this action to fail in case of errors
