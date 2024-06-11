@@ -1,0 +1,18 @@
+
+name: "CI"
+on: push
+
+jobs:
+  ci/unit:
+    name: Run Unit tests (GUT)
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Docker test
+        uses: ceceppa/godot-gut-ci@83e8b452eec0683f59445f34e16e0bd0ff16144c # pin to the latest commit at implementation time
+        with:
+          godot_version: 4.2.2 # uses godot 4.2.2
+          gut_params: -gdir=res://Tests/Unit -gsuffix=.gd -gprefix=test_
