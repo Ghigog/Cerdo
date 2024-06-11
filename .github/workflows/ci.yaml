@@ -6,13 +6,41 @@ jobs:
   unit_tests_gut:
     name: Run Unit tests (GUT)
     runs-on: ubuntu-latest
+    env:
+      GODOT_VERSION: 4.2.2
+      GODOT_PARAMS: --headless
+      GUT_PARAMS: -gdir=res://Tests/Unit -gsuffix=.gd
+      GODOT_PATH: /usr/local/bin/godot
+      GUT_TEMP_FILE: /tmp/gut.log
     steps:
 
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Docker test
-        uses: ceceppa/godot-gut-ci@83e8b452eec0683f59445f34e16e0bd0ff16144c # pin to the latest commit at implementation time
-        with:
-          godot_version: 4.2.2 # uses godot 4.2.2
-          gut_params: -gdir=res://Tests/Unit -gsuffix=.gd -gprefix=test_
+      - name: Install Godot 4.2.2
+        run: |
+          echo "Downloading Godot4"
+          wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          unzip Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 $GODOT_BIN
+
+      - name: Run Unit Tests
+        run: |
+          # hack to fix issue with failing to import GUTUtils
+          # see: https://github.com/bitwes/Gut/issues/589
+          $GODOT_BIN -d -s $GODOT_PARAMS --import -gexit
+
+          $GODOT_BIN -d -s $GODOT_PARAMS --path $PWD addons/gut/gut_cmdln.gd -gexit $GUT_PARAMS 2>&1 | tee $GUT_TEMP_FILE
+
+          # Godot always exists with error 0, but we want this action to fail in case of errors
+          if grep -q "No tests ran" "$GUT_TEMP_FILE" || grep -qE "Asserts\s+none" "$GUT_TEMP_FILE";
+          then
+            echo "No test ran. Please check your 'gut_params'"
+            exit 1
+          fi
+
+          if  ! grep -q "All tests passed" "$GUT_TEMP_FILE"
+          then
+            echo "One or more test have failed"
+            exit 1
+          fi
