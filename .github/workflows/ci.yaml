@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GODOT_VERSION: 4.2.2
-      GODOT_PARAMS: --headless
+      GODOT_PARAMS: --headless --verbose
       GUT_PARAMS: -gdir=res://Tests/Unit/ -gsuffix=.gd -ginclude_subdirs -gexit
       GODOT_BIN: /usr/local/bin/godot
       GUT_TEMP_FILE: /tmp/gut.log
