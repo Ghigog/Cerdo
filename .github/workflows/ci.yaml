@@ -28,9 +28,9 @@ jobs:
         run: |
           # hack to fix issue with failing to import GUTUtils
           # see: https://github.com/bitwes/Gut/issues/589
-          $GODOT_BIN -d -s $GODOT_PARAMS --path $PWD --import
+          $GODOT_BIN -d $GODOT_PARAMS --path $PWD --import
 
-          $GODOT_BIN -d -s $GODOT_PARAMS --path $PWD addons/gut/gut_cmdln.gd $GUT_PARAMS 2>&1 | tee $GUT_TEMP_FILE
+          $GODOT_BIN -d $GODOT_PARAMS --path $PWD -s addons/gut/gut_cmdln.gd $GUT_PARAMS 2>&1 | tee $GUT_TEMP_FILE
 
           # Godot always exists with error 0, but we want this action to fail in case of errors
           if grep -q "No tests ran" "$GUT_TEMP_FILE" || grep -qE "Asserts\s+none" "$GUT_TEMP_FILE";
