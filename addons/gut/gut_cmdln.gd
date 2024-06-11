@@ -323,6 +323,7 @@ func _init():
 		quit(0)
 		return
 
+	var GutUtils = load("res://addons/gut/utils.gd")
 	_utils = GutUtils.get_instance()
 	if(!_utils.is_version_ok()):
 		print("\n\n", _utils.get_version_text())
