@@ -9,7 +9,7 @@ jobs:
     env:
       GODOT_VERSION: 4.2.2
       GODOT_PARAMS: --headless
-      GUT_PARAMS: -gdir=res://Tests/Unit -gsuffix=.gd -gexit
+      GUT_PARAMS: -gdir=res://Tests/Unit/ -gsuffix=.gd -gexit
       GODOT_BIN: /usr/local/bin/godot
       GUT_TEMP_FILE: /tmp/gut.log
     steps:
