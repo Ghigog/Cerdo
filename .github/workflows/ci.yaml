@@ -28,7 +28,7 @@ jobs:
         run: |
           # hack to fix issue with failing to import GUTUtils
           # see: https://github.com/bitwes/Gut/issues/589
-          $GODOT_BIN -d -s $GODOT_PARAMS --import -gexit
+          $GODOT_BIN -d -s $GODOT_PARAMS --path $PWD --import -gexit
 
           $GODOT_BIN -d -s $GODOT_PARAMS --path $PWD addons/gut/gut_cmdln.gd -gexit $GUT_PARAMS 2>&1 | tee $GUT_TEMP_FILE
 
