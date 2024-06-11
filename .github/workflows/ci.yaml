@@ -3,7 +3,7 @@ name: "CI"
 on: push
 
 jobs:
-  ci/unit:
+  unit_tests_gut:
     name: Run Unit tests (GUT)
     runs-on: ubuntu-latest
     steps:
