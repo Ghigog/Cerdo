@@ -15,6 +15,7 @@ extends Control
 
 const BaseCpu = preload("res://Scripts/cpu/base_cpu.gd")
 const RandomCpu = preload("res://Scripts/cpu/random_cpu.gd")
+const StrategicCpu = preload("res://Scripts/cpu/strategic_cpu.gd")
 
 var dice_value: int = 0
 var current_score: int = 0
@@ -23,7 +24,8 @@ var random = RandomNumberGenerator.new()
 
 
 const cpu_personalities = [
-	RandomCpu
+	RandomCpu,
+	StrategicCpu,
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -69,12 +71,10 @@ func _swap_players():
 	current_score = 0
 	current_score_label.text = str(current_score)
 	var cpu_turn = (Global.second_player == 1) and (Global.turn == 1)
-	print("cpu_turn = ", cpu_turn)
 	roll_button.disabled = cpu_turn
 	hold_button.disabled = cpu_turn
 	refresh_turn()
 	if cpu_turn:
-		#print("cpu_turn")
 		cpu_play()
 
 func refresh_score():
@@ -94,15 +94,13 @@ func cpu_play():
 	#while decision != BaseCpu.DECISION.HOLD and Global.turn == 1:
 	if Global.turn == 1:
 		var cpu = cpu_personalities[Global.cpu_personality].new()
-		var decision = cpu.decide()
-		print("Lets roll" if decision == cpu.DECISION.ROLL else "I will hold")
+		var decision = cpu.decide(current_score)
 		if decision == cpu.DECISION.HOLD:
 			_on_hold_button_pressed()
 		else:
 			_on_roll_button_pressed()
 			if Global.turn == 1:
 				timer.start(2)
-		#decision = cpu.decide()
 		
 
 func _on_timer_timeout():
