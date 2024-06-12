@@ -46,3 +46,19 @@ func test_refresh_turn_1_from_1():
 	before_each_refresh_turn()
 	refresh_turn_from_to( _main.player_turn_h_box_container.ALIGNMENT_END, 
 	1, _main.player_turn_h_box_container.ALIGNMENT_END )
+
+func test_render_scores_player1():
+	Global.player_scores = [7,8]
+	_main.player_1_score_label = double(Label).new()
+	_main.player_2_score_label = double(Label).new()
+	_main.player_1_score_label.text = "randomtext"
+	_main.render_scores();
+	assert_eq(_main.player_1_score_label.text, str(Global.player_scores[0]), "Expected player 1 score to be: " + str(Global.player_scores[0]))
+
+func test_render_scores_player2():
+	Global.player_scores = [7,8]
+	_main.player_1_score_label = double(Label).new()
+	_main.player_2_score_label = double(Label).new()
+	_main.player_2_score_label.text = "randomtext2"
+	_main.render_scores();
+	assert_eq(_main.player_2_score_label.text, str(Global.player_scores[1]), "Expected player 2 score to be: " + str(Global.player_scores[1]))

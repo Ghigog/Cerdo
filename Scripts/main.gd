@@ -30,7 +30,7 @@ const cpu_personalities = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	refresh_score()
+	render_scores()
 	refresh_turn()
 	random.randomize()
 
@@ -57,7 +57,8 @@ func _on_roll_button_pressed():
 func _on_hold_button_pressed():
 	print("cpu holding")
 	Global.player_scores[Global.turn] += current_score
-	refresh_score()
+	render_scores()
+	refresh_turn()
 	if Global.player_scores[Global.turn] >= 100:
 		Global.last_winner = Global.turn
 		for score in len(Global.player_scores):
@@ -77,10 +78,9 @@ func _swap_players():
 	if cpu_turn:
 		cpu_play()
 
-func refresh_score():
+func render_scores():
 	player_1_score_label.text = str(Global.player_scores[0])
 	player_2_score_label.text = str(Global.player_scores[1])
-	refresh_turn()
 
 func refresh_turn():
 	player_turn_h_box_container.alignment = (
