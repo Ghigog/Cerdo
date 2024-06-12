@@ -10,6 +10,7 @@ func before_each():
 
 func after_each():
 	_random_cpu.free()
+	assert_no_new_orphans()
 
 func test_decide_roll():
 	stub(_random_cpu.random, "randi_range").to_return(0)
