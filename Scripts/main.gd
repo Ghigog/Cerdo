@@ -16,6 +16,7 @@ extends Control
 const BaseCpu = preload("res://Scripts/cpu/base_cpu.gd")
 const RandomCpu = preload("res://Scripts/cpu/random_cpu.gd")
 const StrategicCpu = preload("res://Scripts/cpu/strategic_cpu.gd")
+const VanillaD6 = preload("res://Scripts/dice/vanilla_d6.gd")
 
 var dice_value: int = 0
 var current_score: int = 0
@@ -26,6 +27,10 @@ var random = RandomNumberGenerator.new()
 const cpu_personalities = [
 	RandomCpu,
 	StrategicCpu,
+]
+
+const dice = [
+	VanillaD6
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -43,10 +48,9 @@ func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/app.tscn")
 
 func _on_roll_button_pressed():
-	dice_value = random.randi_range(1, 6)
-	var folder = "res://Assets/DiceImages/"
-	var filename = "dice" + str(dice_value) + ".svg"
-	dice_texture.texture = load(folder + filename)
+	var dice_instance = dice[Global.player_dice[Global.turn]].new()
+	dice_value = dice_instance.roll()
+	dice_texture.texture = dice_instance.getAsset(dice_value)
 	print(dice_value)
 	if dice_value == 1:
 		_swap_players()
