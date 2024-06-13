@@ -31,6 +31,8 @@ const CERDO_SONG_B_3 = preload("res://Assets/Audio/Music/CerdoSongB3.wav")
 
 const BaseCpu = preload("res://Scripts/cpu/base_cpu.gd")
 const RandomCpu = preload("res://Scripts/cpu/random_cpu.gd")
+const StrategicCpu = preload("res://Scripts/cpu/strategic_cpu.gd")
+const VanillaD6 = preload("res://Scripts/dice/vanilla_d6.gd")
 
 var dice_value: int = 0
 var current_score: int = 0
@@ -39,12 +41,17 @@ var random = RandomNumberGenerator.new()
 
 
 const cpu_personalities = [
-	RandomCpu
+	RandomCpu,
+	StrategicCpu,
+]
+
+const dice = [
+	VanillaD6
 ]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	refresh_score()
+	render_scores()
 	refresh_turn()
 	random.randomize()
 
@@ -57,11 +64,10 @@ func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/app.tscn")
 
 func _on_roll_button_pressed():
-	dice_value = random.randi_range(1, 6)
-	var folder = "res://Assets/DiceImages/"
-	var filename = "dice" + str(dice_value) + ".svg"
-	dice_texture.texture = load(folder + filename)
-	#print(dice_value)
+	var dice_instance = dice[Global.player_dice[Global.turn]].new()
+	dice_value = dice_instance.roll()
+	dice_texture.texture = dice_instance.getAsset(dice_value)
+	print(dice_value)
 	if dice_value == 1:
 		_swap_players()
 	else:
@@ -70,8 +76,10 @@ func _on_roll_button_pressed():
 
 func _on_hold_button_pressed():
 	Global.player_scores[Global.turn] += current_score
-	check_music()
-	refresh_score()
+  check_music()
+	render_scores()
+	refresh_turn()
+
 	if Global.player_scores[Global.turn] >= 100:
 		Global.last_winner = Global.turn
 		for score in len(Global.player_scores):
@@ -87,18 +95,15 @@ func _swap_players():
 	current_score = 0
 	current_score_label.text = str(current_score)
 	var cpu_turn = (Global.second_player == 1) and (Global.turn == 1)
-	#print("cpu_turn = ", cpu_turn)
 	roll_button.disabled = cpu_turn
 	hold_button.disabled = cpu_turn
 	refresh_turn()
 	if cpu_turn:
-		#print("cpu_turn")
 		cpu_play()
 
-func refresh_score():
+func render_scores():
 	player_1_score_label.text = str(Global.player_scores[0])
 	player_2_score_label.text = str(Global.player_scores[1])
-	refresh_turn()
 
 func refresh_turn():
 	player_turn_h_box_container.alignment = (
@@ -112,15 +117,13 @@ func cpu_play():
 	#while decision != BaseCpu.DECISION.HOLD and Global.turn == 1:
 	if Global.turn == 1:
 		var cpu = cpu_personalities[Global.cpu_personality].new()
-		var decision = cpu.decide()
-		#print("Lets roll" if decision == cpu.DECISION.ROLL else "I will hold")
+		var decision = cpu.decide(current_score)
 		if decision == cpu.DECISION.HOLD:
 			_on_hold_button_pressed()
 		else:
 			_on_roll_button_pressed()
 			if Global.turn == 1:
 				timer.start(2)
-		#decision = cpu.decide()
 		
 
 func _on_timer_timeout():
