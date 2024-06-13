@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://fb1hsron3wl3"]
+[gd_scene load_steps=11 format=3 uid="uid://fb1hsron3wl3"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yek6o"]
 [ext_resource type="LabelSettings" uid="uid://cuqtmgbcktie8" path="res://Assets/title_text_settings.tres" id="2_tmmpw"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cfvdsu8ij2ojg" path="res://Scenes/anim_background.tscn" id="5_nk20s"]
 [ext_resource type="AudioStream" uid="uid://b7eunfn41niwi" path="res://Assets/Audio/Music/CerdoSongBellA.wav" id="6_1akw0"]
 [ext_resource type="AudioStream" uid="uid://48kvwm6t6dam" path="res://Assets/Audio/Music/CerdoSong2.wav" id="7_1hmxj"]
+[ext_resource type="AudioStream" uid="uid://x4tvogad4nma" path="res://Assets/Audio/Music/CerdoSongB1.wav" id="8_2nbw1"]
+[ext_resource type="AudioStream" uid="uid://doro1n6ccvhv6" path="res://Assets/Audio/Music/CerdoSongBass.wav" id="9_2hiwt"]
+[ext_resource type="AudioStream" uid="uid://7xb7d6clqmte" path="res://Assets/Audio/Music/CerdoSongBass2.wav" id="10_i0yn8"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -139,21 +142,29 @@ one_shot = true
 
 [node name="TurnMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1akw0")
+volume_db = 5.0
 autoplay = true
-bus = &"Music"
+bus = &"TurnMusic"
 
 [node name="MainTune" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_1hmxj")
 autoplay = true
 bus = &"Music"
 
-[node name="Detail" type="AudioStreamPlayer" parent="."]
+[node name="DetailMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_2nbw1")
+bus = &"Music"
 
 [node name="Bass" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_2hiwt")
+bus = &"Music"
 
 [node name="Bass2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_i0yn8")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton" to="." method="_on_hold_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/RollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]
 [connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="TurnMusic" to="." method="_on_turn_music_finished"]
+[connection signal="finished" from="MainTune" to="." method="_on_main_tune_finished"]
