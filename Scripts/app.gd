@@ -1,8 +1,11 @@
 extends Control
 
+@onready var continue_button = $CanvasLayer/VBoxContainer/ContinueButton
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.load_variables()
+	continue_button.visible = Global.is_game_active
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

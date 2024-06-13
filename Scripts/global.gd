@@ -13,6 +13,8 @@ var turn: int = 0
 var second_player = 0
 var cpu_personality = 0
 
+var is_game_active: bool = false
+
 func quit_game():
 	get_tree().quit()
 
@@ -25,13 +27,15 @@ func new_save():
 			0,
 			0
 		],
-		"Turn" : 0
+		"Turn" : 0,
+		"IsGameActive": false,
 	}
 
 func generate_save_dict():
 	return {
 		"PlayerScores" : player_scores,
-		"Turn" : turn
+		"Turn" : turn,
+		"IsGameActive" : is_game_active,
 	}
 
 func save_game():
@@ -59,5 +63,6 @@ func load_game():
 
 func load_variables():
 	var loaded_vars = load_game()
-	player_scores = loaded_vars["PlayerScores"]
-	turn = loaded_vars["Turn"]
+	player_scores = loaded_vars.get("PlayerScores", [0, 0])
+	turn = loaded_vars.get("Turn", 0)
+	is_game_active = loaded_vars.get("IsGameActive", false)

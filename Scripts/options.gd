@@ -21,7 +21,6 @@ func _on_option_button_item_selected(index):
 func _on_cpu_button_item_selected(index):
 	Global.cpu_personality = index
 	
-	
 
 
 func _on_play_button_pressed():

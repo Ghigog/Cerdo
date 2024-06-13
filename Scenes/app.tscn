@@ -30,9 +30,9 @@ layout_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 104.0
-offset_top = 162.0
+offset_top = 135.0
 offset_right = 616.0
-offset_bottom = 1118.0
+offset_bottom = 1195.0
 
 [node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -45,10 +45,16 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Play"
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Continue"
 
 [node name="InstructionsButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -61,6 +67,6 @@ layout_mode = 2
 text = "Quit
 "
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/NewGameButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

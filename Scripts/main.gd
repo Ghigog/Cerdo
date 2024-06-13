@@ -30,6 +30,7 @@ const cpu_personalities = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.is_game_active = true
 	render_scores()
 	refresh_turn()
 	random.randomize()
@@ -59,13 +60,21 @@ func _on_hold_button_pressed():
 	Global.player_scores[Global.turn] += current_score
 	render_scores()
 	refresh_turn()
-	if Global.player_scores[Global.turn] >= 100:
-		Global.last_winner = Global.turn
-		for score in len(Global.player_scores):
-			Global.player_scores[score] = 0
-		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+	if _is_game_finished():
+		_end_current_game()
 	_swap_players()
 	Global.save_game()
+
+func _end_current_game():
+	Global.is_game_active = false
+	Global.last_winner = Global.turn
+	for score in len(Global.player_scores):
+		Global.player_scores[score] = 0
+	Global.save_game()
+	get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+
+func _is_game_finished():
+	return Global.player_scores[Global.turn] >= 100
 
 func _swap_players():
 	Global.turn = 1 if Global.turn == 0 else 0
