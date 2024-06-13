@@ -12,6 +12,7 @@ var turn: int = 0
 #Variables for IA
 var second_player = 0
 var cpu_personality = 0
+var player_dice = [0, 0]
 
 func quit_game():
 	get_tree().quit()
@@ -25,13 +26,18 @@ func new_save():
 			0,
 			0
 		],
-		"Turn" : 0
+		"Turn" : 0,
+		"Dice" : [
+			0, 
+			0
+		]
 	}
 
 func generate_save_dict():
 	return {
 		"PlayerScores" : player_scores,
-		"Turn" : turn
+		"Turn" : turn,
+		"Dice" : player_dice
 	}
 
 func save_game():
@@ -61,3 +67,4 @@ func load_variables():
 	var loaded_vars = load_game()
 	player_scores = loaded_vars["PlayerScores"]
 	turn = loaded_vars["Turn"]
+	player_dice = loaded_vars.get("Dice", new_save()["Dice"])
