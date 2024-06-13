@@ -12,6 +12,10 @@ extends Control
 
 @onready var timer = $CanvasLayer/Timer
 
+@onready var turn_music = $TurnMusic
+const CERDO_SONG_BELL_A = preload("res://Assets/Audio/Music/CerdoSongBellA.wav")
+const CERDO_SONG_BELL_B = preload("res://Assets/Audio/Music/CerdoSongBellB.wav")
+
 
 const BaseCpu = preload("res://Scripts/cpu/base_cpu.gd")
 const RandomCpu = preload("res://Scripts/cpu/random_cpu.gd")
@@ -53,6 +57,7 @@ func _on_roll_button_pressed():
 		current_score_label.text = str(current_score)
 
 func _on_hold_button_pressed():
+	check_music()
 	print("cpu holding")
 	Global.player_scores[Global.turn] += current_score
 	refresh_score()
@@ -65,6 +70,8 @@ func _on_hold_button_pressed():
 	Global.save_game()
 
 func _swap_players():
+	turn_music.stream = CERDO_SONG_BELL_A
+	turn_music.play()
 	Global.turn = 1 if Global.turn == 0 else 0
 	current_score = 0
 	current_score_label.text = str(current_score)
@@ -74,6 +81,8 @@ func _swap_players():
 	hold_button.disabled = cpu_turn
 	refresh_turn()
 	if cpu_turn:
+		turn_music.stream = CERDO_SONG_BELL_B
+		turn_music.play()
 		#print("cpu_turn")
 		cpu_play()
 
@@ -107,3 +116,12 @@ func cpu_play():
 
 func _on_timer_timeout():
 	cpu_play()
+
+func check_music():
+	if Global.player_scores[Global.turn] >= 20:
+		set_music(1)
+
+func set_music(stage):
+	if stage == 1:
+		pass
+	pass

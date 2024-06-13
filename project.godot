@@ -18,6 +18,10 @@ config/custom_user_dir_name="CerdoSaveFiles"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Assets/cerdito.png"
 
+[audio]
+
+buses/default_bus_layout="res://cerdo_bus.tres"
+
 [autoload]
 
 Global="*res://Scripts/global.gd"
@@ -31,6 +35,10 @@ window/size/window_height_override=853
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [rendering]
 
