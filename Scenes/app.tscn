@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dalxufw6oghf8"]
+[gd_scene load_steps=6 format=3 uid="uid://dalxufw6oghf8"]
 
 [ext_resource type="Script" path="res://Scripts/app.gd" id="1_1wiqn"]
 [ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="1_hnmkt"]
 [ext_resource type="PackedScene" uid="uid://cfvdsu8ij2ojg" path="res://Scenes/anim_background.tscn" id="2_8epkr"]
+[ext_resource type="AudioStream" uid="uid://x886jhgfjia2" path="res://Assets/Audio/Music/CerdoSong1.wav" id="4_j5fk4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4idfx"]
 font = ExtResource("1_hnmkt")
@@ -23,10 +24,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1wiqn")
 
-[node name="Background" parent="." instance=ExtResource("2_8epkr")]
-layout_mode = 1
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" parent="CanvasLayer" instance=ExtResource("2_8epkr")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 104.0
@@ -60,6 +60,11 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Quit
 "
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_j5fk4")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]
