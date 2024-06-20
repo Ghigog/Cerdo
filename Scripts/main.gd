@@ -76,7 +76,7 @@ func _on_roll_button_pressed():
 
 func _on_hold_button_pressed():
 	Global.player_scores[Global.turn] += current_score
-  check_music()
+	check_music()
 	render_scores()
 	refresh_turn()
 
