@@ -67,7 +67,7 @@ func before_each_ready():
 	_main.free()
 	_main = partial_double(Main).new()
 	stub(_main, "render_scores").to_do_nothing()
-	stub(_main, "refresh_turn").to_do_nothing()
+	stub(_main, "refresh_turn_icon").to_do_nothing()
 
 func test_ready__spy__render_scores():
 	before_each_ready()
@@ -78,5 +78,5 @@ func test_ready__spy__render_scores():
 func test_ready__spy__refresh_turn():
 	before_each_ready()
 	_main._ready()
-	assert_called(_main, "refresh_turn")
-	assert_call_count(_main, "refresh_turn", 1)
+	assert_called(_main, "refresh_turn_icon")
+	assert_call_count(_main, "refresh_turn_icon", 1)
