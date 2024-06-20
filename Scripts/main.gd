@@ -12,6 +12,7 @@ extends Control
 
 @onready var timer = $Timer
 @onready var delay_timer = $DelayTimer
+@onready var one_timer = $OneTimer
 
 
 ## MUSIC
@@ -24,6 +25,7 @@ extends Control
 
 ## EFFECTS
 @onready var hold_particles = $CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton/Control/HoldParticles
+@onready var one_particles = $CanvasLayer/VBoxContainer/CenterContainer/DiceTexture/Control/OneParticles
 
 
 var music_stage: int
@@ -76,10 +78,18 @@ func _on_roll_button_pressed():
 	dice_texture.texture = dice_instance.getAsset(dice_value)
 	print(dice_value)
 	if dice_value == 1:
-		_swap_players()
+		one_timer.start()
+		one_particles.emitting = true
+		roll_button.disabled = true
 	else:
 		current_score += dice_value
 		current_score_label.text = str(current_score)
+
+
+func on_one_roll():
+	_swap_players()
+	one_particles.emitting = false
+	roll_button.disabled = false
 
 func _on_hold_button_pressed():
 	hold_button.disabled = true

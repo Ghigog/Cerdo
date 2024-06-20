@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://fb1hsron3wl3"]
+[gd_scene load_steps=15 format=3 uid="uid://fb1hsron3wl3"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yek6o"]
 [ext_resource type="LabelSettings" uid="uid://cuqtmgbcktie8" path="res://Assets/title_text_settings.tres" id="2_tmmpw"]
@@ -12,18 +12,29 @@
 [ext_resource type="AudioStream" uid="uid://doro1n6ccvhv6" path="res://Assets/Audio/Music/CerdoSongBass.wav" id="9_2hiwt"]
 [ext_resource type="AudioStream" uid="uid://7xb7d6clqmte" path="res://Assets/Audio/Music/CerdoSongBass2.wav" id="10_i0yn8"]
 
+[sub_resource type="Curve" id="Curve_0ayjm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_frvw1"]
+curve = SubResource("Curve_0ayjm")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1mmcp"]
-emission_shape_scale = Vector3(20, 5, 1)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 3.0
-emission_ring_inner_radius = 2.0
+emission_ring_height = 0.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 50.0
 direction = Vector3(0, -1, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 100.0
-gravity = Vector3(0, 98, 0)
-radial_accel_max = 140.0
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+radial_velocity_min = 2.25
+radial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 30.0
+radial_accel_max = 50.0
+scale_curve = SubResource("CurveTexture_frvw1")
+turbulence_enabled = true
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -158,6 +169,28 @@ texture = ExtResource("4_4vuc5")
 expand_mode = 2
 stretch_mode = 4
 
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/CenterContainer/DiceTexture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OneParticles" type="GPUParticles2D" parent="CanvasLayer/VBoxContainer/CenterContainer/DiceTexture/Control"]
+emitting = false
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_1mmcp")
+texture = ExtResource("5_n0uwl")
+lifetime = 5.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.1
+
 [node name="RollButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
@@ -175,6 +208,9 @@ text = "< Return To Menu"
 one_shot = true
 
 [node name="DelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="OneTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="TurnMusic" type="AudioStreamPlayer" parent="."]
@@ -204,5 +240,6 @@ stream = ExtResource("10_i0yn8")
 [connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="DelayTimer" to="." method="hold_button_functionality"]
+[connection signal="timeout" from="OneTimer" to="." method="on_one_roll"]
 [connection signal="finished" from="TurnMusic" to="." method="_on_turn_music_finished"]
 [connection signal="finished" from="MainTune" to="." method="_on_main_tune_finished"]
