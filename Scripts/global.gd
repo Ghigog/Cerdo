@@ -66,5 +66,6 @@ func load_game():
 func load_variables():
 	var loaded_vars = load_game()
 	player_scores = loaded_vars["PlayerScores"]
-	turn = loaded_vars["Turn"]
+	var is_both_scores_0 = player_scores[0] == 0 and player_scores[1] == 0
+	turn = 0 if is_both_scores_0 else loaded_vars["Turn"]
 	player_dice = loaded_vars.get("Dice", new_save()["Dice"])
