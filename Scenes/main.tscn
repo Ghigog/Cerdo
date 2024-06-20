@@ -1,15 +1,29 @@
-[gd_scene load_steps=11 format=3 uid="uid://fb1hsron3wl3"]
+[gd_scene load_steps=13 format=3 uid="uid://fb1hsron3wl3"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yek6o"]
 [ext_resource type="LabelSettings" uid="uid://cuqtmgbcktie8" path="res://Assets/title_text_settings.tres" id="2_tmmpw"]
 [ext_resource type="Texture2D" uid="uid://bifnu3pfagcyv" path="res://Assets/DiceImages/dice1.svg" id="4_4vuc5"]
 [ext_resource type="Texture2D" uid="uid://rnale02jvivo" path="res://Assets/arrow2.png" id="4_ucb5p"]
+[ext_resource type="Texture2D" uid="uid://ri0q64ig6q8y" path="res://Assets/Particles/brillo.png" id="5_n0uwl"]
 [ext_resource type="PackedScene" uid="uid://cfvdsu8ij2ojg" path="res://Scenes/anim_background.tscn" id="5_nk20s"]
 [ext_resource type="AudioStream" uid="uid://b7eunfn41niwi" path="res://Assets/Audio/Music/CerdoSongBellA.wav" id="6_1akw0"]
 [ext_resource type="AudioStream" uid="uid://48kvwm6t6dam" path="res://Assets/Audio/Music/CerdoSong2.wav" id="7_1hmxj"]
 [ext_resource type="AudioStream" uid="uid://x4tvogad4nma" path="res://Assets/Audio/Music/CerdoSongB1.wav" id="8_2nbw1"]
 [ext_resource type="AudioStream" uid="uid://doro1n6ccvhv6" path="res://Assets/Audio/Music/CerdoSongBass.wav" id="9_2hiwt"]
 [ext_resource type="AudioStream" uid="uid://7xb7d6clqmte" path="res://Assets/Audio/Music/CerdoSongBass2.wav" id="10_i0yn8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1mmcp"]
+emission_shape_scale = Vector3(20, 5, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 2.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+radial_accel_max = 140.0
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -109,6 +123,26 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "HOLD!"
 
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HoldParticles" type="GPUParticles2D" parent="CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton/Control"]
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_1mmcp")
+texture = ExtResource("5_n0uwl")
+lifetime = 3.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+
 [node name="Control2" type="Control" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
@@ -137,7 +171,10 @@ offset_right = 200.0
 offset_bottom = 70.0
 text = "< Return To Menu"
 
-[node name="Timer" type="Timer" parent="CanvasLayer"]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DelayTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="TurnMusic" type="AudioStreamPlayer" parent="."]
@@ -165,6 +202,7 @@ stream = ExtResource("10_i0yn8")
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton" to="." method="_on_hold_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/RollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]
-[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DelayTimer" to="." method="hold_button_functionality"]
 [connection signal="finished" from="TurnMusic" to="." method="_on_turn_music_finished"]
 [connection signal="finished" from="MainTune" to="." method="_on_main_tune_finished"]

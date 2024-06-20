@@ -10,7 +10,9 @@ extends Control
 @onready var hold_button = $CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton
 @onready var roll_button = $CanvasLayer/VBoxContainer/RollButton
 
-@onready var timer = $CanvasLayer/Timer
+@onready var timer = $Timer
+@onready var delay_timer = $DelayTimer
+
 
 ## MUSIC
 @onready var turn_music = $TurnMusic
@@ -18,6 +20,11 @@ extends Control
 @onready var detail_music = $DetailMusic
 @onready var bass = $Bass
 @onready var bass_2 = $Bass2
+
+
+## EFFECTS
+@onready var hold_particles = $CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton/Control/HoldParticles
+
 
 var music_stage: int
 var _swap_turn_music
@@ -52,7 +59,7 @@ const dice = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	render_scores()
-	refresh_turn()
+	refresh_turn_icon()
 	random.randomize()
 
 
@@ -75,18 +82,25 @@ func _on_roll_button_pressed():
 		current_score_label.text = str(current_score)
 
 func _on_hold_button_pressed():
+	hold_button.disabled = true
 	Global.player_scores[Global.turn] += current_score
 	check_music()
 	render_scores()
-	refresh_turn()
+	hold_particles.emitting = true
+	delay_timer.start()
 
+
+func hold_button_functionality():
+	hold_button.disabled = false
+	hold_particles.emitting = false
+	Global.save_game()
+	refresh_turn_icon()
 	if Global.player_scores[Global.turn] >= 100:
 		Global.last_winner = Global.turn
 		for score in len(Global.player_scores):
 			Global.player_scores[score] = 0
 		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 	_swap_players()
-	Global.save_game()
 
 func _swap_players():
 	_swap_turn_music = true
@@ -97,7 +111,7 @@ func _swap_players():
 	var cpu_turn = (Global.second_player == 1) and (Global.turn == 1)
 	roll_button.disabled = cpu_turn
 	hold_button.disabled = cpu_turn
-	refresh_turn()
+	refresh_turn_icon()
 	if cpu_turn:
 		cpu_play()
 
@@ -105,7 +119,7 @@ func render_scores():
 	player_1_score_label.text = str(Global.player_scores[0])
 	player_2_score_label.text = str(Global.player_scores[1])
 
-func refresh_turn():
+func refresh_turn_icon():
 	player_turn_h_box_container.alignment = (
 		player_turn_h_box_container.ALIGNMENT_BEGIN
 		if Global.turn == 0 else

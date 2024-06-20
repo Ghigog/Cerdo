@@ -38,9 +38,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
-
 
 [rendering]
 
