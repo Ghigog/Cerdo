@@ -70,7 +70,7 @@ func _process(delta):
 	pass
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://Scenes/app.tscn")
+	get_tree().change_scene_to_file("res://Scenes/mainmenu.tscn")
 
 func _on_roll_button_pressed():
 	var dice_instance = dice[Global.player_dice[Global.turn]].new()
@@ -80,7 +80,7 @@ func _on_roll_button_pressed():
 	if dice_value == 1:
 		one_timer.start()
 		one_particles.emitting = true
-		roll_button.disabled = true
+		toggle_button_disabled(true)
 	else:
 		current_score += dice_value
 		current_score_label.text = str(current_score)
@@ -89,10 +89,10 @@ func _on_roll_button_pressed():
 func on_one_roll():
 	_swap_players()
 	one_particles.emitting = false
-	roll_button.disabled = false
+	
 
 func _on_hold_button_pressed():
-	hold_button.disabled = true
+	toggle_button_disabled(true)
 	Global.player_scores[Global.turn] += current_score
 	check_music()
 	render_scores()
@@ -101,7 +101,7 @@ func _on_hold_button_pressed():
 
 
 func hold_button_functionality():
-	hold_button.disabled = false
+	toggle_button_disabled(true)
 	hold_particles.emitting = false
 	Global.save_game()
 	refresh_turn_icon()
@@ -119,8 +119,7 @@ func _swap_players():
 	current_score = 0
 	current_score_label.text = str(current_score)
 	var cpu_turn = (Global.second_player == 1) and (Global.turn == 1)
-	roll_button.disabled = cpu_turn
-	hold_button.disabled = cpu_turn
+	toggle_button_disabled(cpu_turn)
 	refresh_turn_icon()
 	if cpu_turn:
 		cpu_play()
@@ -149,6 +148,11 @@ func cpu_play():
 			if Global.turn == 1:
 				timer.start(2)
 		
+
+func toggle_button_disabled(state):
+	hold_button.disabled = state
+	roll_button.disabled = state
+
 
 func _on_timer_timeout():
 	cpu_play()

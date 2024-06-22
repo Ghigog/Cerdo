@@ -9,6 +9,8 @@ const WINNER_MESSAGES = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.load_variables(true)
+	Global.save_game()
 	message.text = WINNER_MESSAGES[Global.last_winner]
 
 
@@ -18,4 +20,4 @@ func _process(delta):
 
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/app.tscn")
+	get_tree().change_scene_to_file("res://Scenes/mainmenu.tscn")

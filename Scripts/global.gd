@@ -63,8 +63,12 @@ func load_game():
 			print("JSON Parse Error: ", jsonParser.get_error_message(), " in ", saveData, " at line ", jsonParser.get_error_line())
 		
 
-func load_variables():
-	var loaded_vars = load_game()
+func load_variables(new_game):
+	var loaded_vars
+	if !new_game:
+		loaded_vars = load_game()
+	else:
+		loaded_vars = new_save()
 	player_scores = loaded_vars["PlayerScores"]
 	var is_both_scores_0 = player_scores[0] == 0 and player_scores[1] == 0
 	turn = 0 if is_both_scores_0 else loaded_vars["Turn"]
