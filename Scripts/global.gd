@@ -9,6 +9,8 @@ var player_scores = [
 # Can either be 0 (for player one) or 1 (for player two)
 var turn: int = 0
 
+var is_game_in_progress = false
+
 #Variables for IA
 var second_player = 0
 var cpu_personality = 0
@@ -30,14 +32,16 @@ func new_save():
 		"Dice" : [
 			0, 
 			0
-		]
+		],
+		"IsGameInProgress": false
 	}
 
 func generate_save_dict():
 	return {
 		"PlayerScores" : player_scores,
 		"Turn" : turn,
-		"Dice" : player_dice
+		"Dice" : player_dice,
+		"IsGameInProgress": is_game_in_progress,
 	}
 
 func save_game():
@@ -48,8 +52,12 @@ func save_game():
 	print("saved: ", json_string)
 
 
+func save_game_exists():
+	return FileAccess.file_exists(SAVE_PATH)
+
+
 func load_game():
-	if !FileAccess.file_exists(SAVE_PATH):
+	if !save_game_exists():
 		return new_save()
 	else:
 		var saveFile = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.READ, PASSWORD)
@@ -72,4 +80,6 @@ func load_variables(new_game):
 	player_scores = loaded_vars["PlayerScores"]
 	var is_both_scores_0 = player_scores[0] == 0 and player_scores[1] == 0
 	turn = 0 if is_both_scores_0 else loaded_vars["Turn"]
-	player_dice = loaded_vars.get("Dice", new_save()["Dice"])
+	var default_values = new_save()
+	player_dice = loaded_vars.get("Dice", default_values["Dice"])
+	is_game_in_progress = loaded_vars.get("IsGameInProgress", default_values["IsGameInProgress"])

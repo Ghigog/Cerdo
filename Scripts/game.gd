@@ -103,6 +103,7 @@ func _on_hold_button_pressed():
 func hold_button_functionality():
 	toggle_button_disabled(true)
 	hold_particles.emitting = false
+	Global.is_game_in_progress = true
 	Global.save_game()
 	refresh_turn_icon()
 	if Global.player_scores[Global.turn] >= 100:
