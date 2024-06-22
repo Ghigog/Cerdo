@@ -19,5 +19,10 @@ func test_decide_roll():
 
 func test_decide_hold():
 	stub(_random_cpu.random, "randi_range").to_return(1)
-	var decision = _random_cpu.decide(0)
+	var decision = _random_cpu.decide(1)
 	assert_eq(decision, RandomCPU.DECISION.HOLD, "Expected Random CPU to decide to hold when ´random.randi_range´ returns 1")
+
+func test_decide_roll_if_score_0():
+	stub(_random_cpu.random, "randi_range").to_return(1)
+	var decision = _random_cpu.decide(0)
+	assert_eq(decision, RandomCPU.DECISION.ROLL, "Expected Random CPU to decide to roll when ´random.randi_range´ returns 1 but the current turn score is 0")

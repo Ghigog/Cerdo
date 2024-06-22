@@ -16,7 +16,7 @@ func roller(expected):
 	var random_result = expected - 1
 	stub(_die.random, "randi_range").to_return(random_result)
 	var result = _die.roll()
-	assert_eq(result, expected, "Expected roll {0} result when ´random.randi_range´ returns {1}".format(expected, str(random_result)))
+	assert_eq(result, expected, "Expected roll {0} result when ´random.randi_range´ returns {1}".format(str(expected), str(random_result)))
 
 func test_roll_1():
 	roller(1)

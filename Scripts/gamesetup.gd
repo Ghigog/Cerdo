@@ -25,8 +25,8 @@ func _on_cpu_button_item_selected(index):
 
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 
 func _on_quit_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/app.tscn")
+	get_tree().change_scene_to_file("res://Scenes/mainmenu.tscn")
