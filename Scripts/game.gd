@@ -119,7 +119,7 @@ func _swap_players():
 	Global.turn = 1 if Global.turn == 0 else 0
 	current_score = 0
 	current_score_label.text = str(current_score)
-	var cpu_turn = (Global.second_player == 1) and (Global.turn == 1)
+	var cpu_turn = Global.is_game_against_cpu() and (Global.turn == 1)
 	toggle_button_disabled(cpu_turn)
 	refresh_turn_icon()
 	if cpu_turn:

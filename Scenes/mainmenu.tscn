@@ -1,19 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dalxufw6oghf8"]
+[gd_scene load_steps=6 format=3 uid="uid://br4son0iywu4k"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_wuulr"]
 [ext_resource type="PackedScene" uid="uid://cfvdsu8ij2ojg" path="res://Scenes/anim_background.tscn" id="2_udjuv"]
-[ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="3_cm82m"]
+[ext_resource type="LabelSettings" uid="uid://cdxnurrakudi0" path="res://Assets/mainmenutitle.tres" id="3_qhgwm"]
+[ext_resource type="LabelSettings" uid="uid://b3s5ljo3r85vf" path="res://Assets/mainmenuscore.tres" id="4_n8cvk"]
 [ext_resource type="AudioStream" uid="uid://x886jhgfjia2" path="res://Assets/Audio/Music/CerdoSong1.wav" id="4_rlrcr"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4idfx"]
-font = ExtResource("3_cm82m")
-font_size = 200
-font_color = Color(1, 0.596078, 0.74902, 1)
-outline_size = 105
-outline_color = Color(1, 1, 0.909804, 1)
-shadow_size = 87
-shadow_color = Color(0.203922, 0.203922, 0.203922, 1)
-shadow_offset = Vector2(30.41, 29.785)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -37,13 +28,26 @@ offset_bottom = 1118.0
 [node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "Cerdo"
-label_settings = SubResource("LabelSettings_4idfx")
+label_settings = ExtResource("3_qhgwm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control" type="Control" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScoreAgainstCpu" type="Label" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 150)
+layout_mode = 2
+text = "You have 0 wins and 10 losses against CPU!"
+label_settings = ExtResource("4_n8cvk")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control2" type="Control" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="NewGameButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
