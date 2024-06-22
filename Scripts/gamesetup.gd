@@ -2,12 +2,13 @@ extends Control
 
 @onready var option_button = $CanvasLayer/VBoxContainer/HBoxContainer/OptionButton
 
+@onready var cpu_button = $CanvasLayer/VBoxContainer/HBoxContainer2/CPUButton
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	cpu_button.disabled = option_button.selected == 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,6 +18,7 @@ func _process(delta):
 
 func _on_option_button_item_selected(index):
 	Global.second_player = index
+	cpu_button.disabled = option_button.selected == 0
 
 func _on_cpu_button_item_selected(index):
 	Global.cpu_personality = index
