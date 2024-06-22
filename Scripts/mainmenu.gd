@@ -1,16 +1,22 @@
 extends Control
 
 @onready var continue_button = $CanvasLayer/VBoxContainer/ContinueButton
+@onready var score_against_cpu = $CanvasLayer/VBoxContainer/ScoreAgainstCpu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var save_exists = Global.save_game_exists()
+	Global.load_progress_variables()
+	_update_score_against_cpu_text()
+	var save_exists = Global.save_file_exists()
 	if !save_exists:
 		continue_button.disabled = true
 	else:
 		Global.load_variables(false)
 		continue_button.disabled = !Global.is_game_in_progress
 
+func _update_score_against_cpu_text():
+	var base_text = "You have {0} wins and {1} losses against CPU!"
+	score_against_cpu.text = base_text.format([Global.wins_against_cpu, Global.losses_against_cpu])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

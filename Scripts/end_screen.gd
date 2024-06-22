@@ -11,6 +11,7 @@ const WINNER_MESSAGES = [
 func _ready():
 	Global.load_variables(true)
 	Global.save_game()
+	Global.register_winner()
 	message.text = WINNER_MESSAGES[Global.last_winner]
 
 

@@ -1,0 +1,13 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cdxnurrakudi0"]
+
+[ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="1_vy6nn"]
+
+[resource]
+font = ExtResource("1_vy6nn")
+font_size = 200
+font_color = Color(1, 0.596078, 0.74902, 1)
+outline_size = 105
+outline_color = Color(1, 1, 0.909804, 1)
+shadow_size = 87
+shadow_color = Color(0.203922, 0.203922, 0.203922, 1)
+shadow_offset = Vector2(30.41, 29.785)
