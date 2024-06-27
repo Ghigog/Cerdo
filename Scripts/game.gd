@@ -14,6 +14,7 @@ extends Control
 @onready var delay_timer = $DelayTimer
 @onready var one_timer = $OneTimer
 
+var current_roll_history = []
 
 ## MUSIC
 @onready var turn_music = $TurnMusic
@@ -77,6 +78,10 @@ func _on_roll_button_pressed():
 	dice_value = dice_instance.roll()
 	dice_texture.texture = dice_instance.getAsset(dice_value)
 	print(dice_value)
+	current_roll_history.append(dice_value)
+	print(current_roll_history)
+	check_repetition()
+	check_sequence()
 	if dice_value == 1:
 		one_timer.start()
 		one_particles.emitting = true
@@ -87,12 +92,14 @@ func _on_roll_button_pressed():
 
 
 func on_one_roll():
+	current_roll_history.clear()
 	_swap_players()
 	one_particles.emitting = false
 	
 
 func _on_hold_button_pressed():
 	toggle_button_disabled(true)
+	current_roll_history.clear()
 	Global.player_scores[Global.turn] += current_score
 	check_music()
 	render_scores()
@@ -155,6 +162,16 @@ func toggle_button_disabled(state):
 	roll_button.disabled = state
 
 
+func check_repetition():
+	pass
+	
+func check_sequence():
+	pass
+
+
+
+
+
 func _on_timer_timeout():
 	cpu_play()
 
@@ -183,7 +200,6 @@ func _on_turn_music_finished():
 		toggle_turn_music = !toggle_turn_music
 	turn_music.play()
 	_swap_turn_music = false
-
 
 func _on_main_tune_finished():
 	turn_music.play()
