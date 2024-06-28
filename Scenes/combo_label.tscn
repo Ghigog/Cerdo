@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bknfm0a43182m"]
+
+[ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="1_c8r4o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_igb34"]
+font = ExtResource("1_c8r4o")
+font_size = 39
+outline_size = 11
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 14
+shadow_color = Color(0.32549, 0.32549, 0.32549, 0.501961)
+shadow_offset = Vector2(5, 5)
+
+[node name="ComboLabel" type="Label"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = 191.0
+offset_right = 83.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Combo +1"
+label_settings = SubResource("LabelSettings_igb34")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
