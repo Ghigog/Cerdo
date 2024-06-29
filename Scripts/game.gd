@@ -11,6 +11,8 @@ extends Control
 @onready var roll_button = $CanvasLayer/VBoxContainer/RollButton
 
 const COMBO_LABEL = preload("res://Scenes/combo_label.tscn")
+const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
+const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
 
 @onready var timer = $Timer
 @onready var delay_timer = $DelayTimer
@@ -54,6 +56,7 @@ var random = RandomNumberGenerator.new()
 
 var isShowingCombo: bool = false
 var new_combo_label: Label
+#var new_combo_instance: Node
 
 const cpu_personalities = [
 	RandomCpu,
@@ -63,6 +66,11 @@ const cpu_personalities = [
 const dice = [
 	VanillaD6
 ]
+
+## TEMP TESTING
+#var forced_results = [2,5,2,4,3,4,3]
+#var forced_position = 0
+## TEMP Cheat above
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -85,6 +93,12 @@ func _on_back_pressed():
 func _on_roll_button_pressed():
 	var dice_instance = dice[Global.player_dice[Global.turn]].new()
 	dice_value = dice_instance.roll()
+	## CHEATING, Below
+	#dice_value = forced_results[forced_position]
+	#forced_position += 1
+	#if forced_position > forced_results.size()-1:
+		#forced_position = 0
+	## Cheating Above
 	dice_texture.texture = dice_instance.getAsset(dice_value)
 	print(dice_value)
 	current_roll_history.append(dice_value)
@@ -173,15 +187,56 @@ func show_combo(combo_value):
 	add_child(new_combo_label, true)
 	move_child(new_combo_label, -1)
 	new_combo_label.text = "Combo + {0}".format([combo_value])
-	new_combo_label.label_settings.font_color.a = 1
-	new_combo_label.label_settings.outline_color.a = 1
-	new_combo_label.label_settings.shadow_color.a = 0.5
 	isShowingCombo = true
 	var combo_timer = new_combo_label.get_child(0)
 	combo_timer.timeout.connect(delete_combo_timer)
 
+
+# 2432 - 0420 # leaf
+# 2524 - 0704 # fireworks
+# 4343 -      # Seductive Glance
+# 2343 -      # Rapha is the best
+# 4556 - 5678 # start dance routine
+# 2334 - 1334 # hack the planet
+# 3322 - 3301 # cicada
+# 2443 - 0443 # https
+# 6262 - 8080 # http
+# 5656 - 6969 # the best time
+
+func show_combo_icon(combo):
+	var new_combo_instance
+	match combo:
+		"leaf":
+			new_combo_instance = leaf_combo.instantiate()
+		"fireworks":
+			new_combo_instance = firework_combo.instantiate()
+		"Seductive Glance":
+			new_combo_instance = firework_combo.instantiate()
+		"Rapha is the best":
+			new_combo_instance = firework_combo.instantiate()
+		"start dance routine":
+			new_combo_instance = firework_combo.instantiate()
+		"hack the planet":
+			new_combo_instance = firework_combo.instantiate()
+		"cicada":
+			new_combo_instance = firework_combo.instantiate()
+		"https":
+			new_combo_instance = firework_combo.instantiate()
+		"http":
+			new_combo_instance = firework_combo.instantiate()
+		"the best time":
+			new_combo_instance = firework_combo.instantiate()
+		_:
+			print("unrecognized combo name")
+	print("new_combo_instance: ", new_combo_instance)
+	add_child(new_combo_instance,true)
+	move_child(new_combo_instance,-1)
+
 func delete_combo_timer():
 	if isShowingCombo:
+		new_combo_label.label_settings.font_color.a = 1
+		new_combo_label.label_settings.shadow_color.a = 0.5
+		new_combo_label.label_settings.outline_color.a = 1
 		new_combo_label.queue_free()
 		isShowingCombo = false
 
@@ -339,6 +394,7 @@ func check_sequence():
 			var description = result.get("description")
 			if description != null:
 				print(description)
+				show_combo_icon(description)
 			# TODO: do something more fun with sequences
 
 func _on_timer_timeout():
