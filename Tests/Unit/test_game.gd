@@ -80,3 +80,25 @@ func test_ready__spy__refresh_turn():
 	_game._ready()
 	assert_called(_game, "refresh_turn_icon")
 	assert_call_count(_game, "refresh_turn_icon", 1)
+
+# Sequences
+# 2432 - 0420 # leaf
+# 2524 - 0704 # fireworks
+# 4343 -      # Seductive Glance
+# 2343 -      # Rapha is the best
+# 4556 - 5678 # start dance routine
+# 2334 - 1334 # hack the planet
+# 3322 - 3301 # cicada
+# 2443 - 0443 # https
+# 6262 - 8080 # http
+# 5656 - 6969 # the best time
+
+func sequence_tester(test_sequence, expected_result):
+	var result = _game.walk_the_sequence_tree(_game.sequences, test_sequence)
+	assert_eq(result, expected_result, "Expected to see a different result")
+
+func test_non_existent_sequence():
+	sequence_tester([2, 3, 4, 5], null)
+
+func test_2432_sequence():
+	sequence_tester([2, 4, 3, 2], {"description": "leaf"})
