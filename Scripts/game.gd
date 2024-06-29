@@ -164,13 +164,133 @@ func toggle_button_disabled(state):
 
 func check_repetition():
 	pass
-	
+
+
+var min_sequence_length = 4
+var max_sequence_length = 4
+
+# Digit Mapping onto a d6, ignoring 1
+# 2 - 0-1
+# 3 - 2-3
+# 4 - 4-5
+# 5 - 6-7
+# 6 - 8-9
+
+# enc  - orig - notes
+# 2432 - 0420 # leaf
+# 2524 - 0704 # fireworks
+# 4343 -      # Seductive Glance
+# 2343 -      # Rapha is the best
+# 4556 - 5678 # start dance routine
+# 2334 - 1334 # hack the planet
+# 3322 - 3301 # cicada
+# 2443 - 0443 # https
+# 6262 - 8080 # http
+# 5656 - 6969 # the best time
+
+var sequences = {
+	2: {
+		3: {
+			3: {
+				4: {
+					"description": "hack the planet"
+				}
+			},
+			4: {
+				3: {
+					"description": "Rapha is the best"
+				}
+			}
+		},
+		4: {
+			3: {
+				2: {
+					"description": "leaf"
+				}
+			},
+			4: {
+				3: {
+					"description": "https"
+				}
+			}
+		},
+		5: {
+			2: {
+				4: {
+					"description": "fireworks"
+				}
+			}
+		}
+	},
+	3: {
+		3: {
+			2: {
+				2: {
+					"description": "cicada"
+				}
+			}
+		}
+	},
+	4: {
+		3: {
+			4: {
+				3: {
+					"description": "Seductive Glance"
+				}
+			}
+		},
+		5: {
+			5: {
+				6: {
+					"description": "start dance routine"
+				}
+			}
+		}
+	},
+	5: {
+		6: {
+			5: {
+				6: {
+					"description": "the best time"
+				}
+			}
+		}
+	},
+	6: {
+		2: {
+			6: {
+				2: {
+					"description": "http"
+				}
+			}
+		}
+	}
+}
+
+func walk_the_sequence_tree(tree, steps):
+	var len_steps = len(steps)
+	if len_steps > 0:
+		var next_step = steps[0]
+		var new_tree = tree.get(next_step)
+		if new_tree != null and len_steps > 1:
+			var future_steps = steps.slice(1, steps.size())
+			return walk_the_sequence_tree(new_tree, future_steps)
+		elif new_tree == null:
+			return null
+		else:
+			return new_tree
+	else:
+		return null
+
 func check_sequence():
-	pass
-
-
-
-
+	if len(current_roll_history) >= min_sequence_length:
+		var history_for_evaluation = current_roll_history.slice(-max_sequence_length, current_roll_history.size())
+		var result = walk_the_sequence_tree(sequences, history_for_evaluation)
+		if result != null:
+			var description = result.get("description")
+			if description != null:
+				print(description)
+			# TODO: do something more fun with sequences
 
 func _on_timer_timeout():
 	cpu_play()
