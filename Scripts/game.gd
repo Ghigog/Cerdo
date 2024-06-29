@@ -10,6 +10,8 @@ extends Control
 @onready var hold_button = $CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton
 @onready var roll_button = $CanvasLayer/VBoxContainer/RollButton
 
+const COMBO_LABEL = preload("res://Scenes/combo_label.tscn")
+
 @onready var timer = $Timer
 @onready var delay_timer = $DelayTimer
 @onready var one_timer = $OneTimer
@@ -44,11 +46,14 @@ const RandomCpu = preload("res://Scripts/cpu/random_cpu.gd")
 const StrategicCpu = preload("res://Scripts/cpu/strategic_cpu.gd")
 const VanillaD6 = preload("res://Scripts/dice/vanilla_d6.gd")
 
+
 var dice_value: int = 0
 var current_score: int = 0
 
 var random = RandomNumberGenerator.new()
 
+var isShowingCombo: bool = false
+var new_combo_label: Label
 
 const cpu_personalities = [
 	RandomCpu,
@@ -68,7 +73,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if isShowingCombo and new_combo_label != null:
+		new_combo_label.position.y -= delta * 50
+		new_combo_label.label_settings.font_color.a -= delta 
+		new_combo_label.label_settings.outline_color.a -= delta
+		new_combo_label.label_settings.shadow_color.a -= delta
 
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/mainmenu.tscn")
@@ -90,12 +99,10 @@ func _on_roll_button_pressed():
 		current_score += dice_value
 		current_score_label.text = str(current_score)
 
-
 func on_one_roll():
 	current_roll_history.clear()
 	_swap_players()
 	one_particles.emitting = false
-	
 
 func _on_hold_button_pressed():
 	toggle_button_disabled(true)
@@ -105,7 +112,6 @@ func _on_hold_button_pressed():
 	render_scores()
 	hold_particles.emitting = true
 	delay_timer.start()
-
 
 func hold_button_functionality():
 	toggle_button_disabled(true)
@@ -142,7 +148,7 @@ func refresh_turn_icon():
 		if Global.turn == 0 else
 		player_turn_h_box_container.ALIGNMENT_END
 	)
-	
+
 func cpu_play():
 	#print("cpu_play is being activated")
 	#while decision != BaseCpu.DECISION.HOLD and Global.turn == 1:
@@ -155,16 +161,59 @@ func cpu_play():
 			_on_roll_button_pressed()
 			if Global.turn == 1:
 				timer.start(2)
-		
 
 func toggle_button_disabled(state):
 	hold_button.disabled = state
 	roll_button.disabled = state
 
+func show_combo(combo_value):
+	if new_combo_label != null:
+		new_combo_label.queue_free()
+	new_combo_label = COMBO_LABEL.instantiate()
+	add_child(new_combo_label, true)
+	move_child(new_combo_label, -1)
+	new_combo_label.text = "Combo + {0}".format([combo_value])
+	new_combo_label.label_settings.font_color.a = 1
+	new_combo_label.label_settings.outline_color.a = 1
+	new_combo_label.label_settings.shadow_color.a = 0.5
+	isShowingCombo = true
+	var combo_timer = new_combo_label.get_child(0)
+	combo_timer.timeout.connect(delete_combo_timer)
+
+func delete_combo_timer():
+	if isShowingCombo:
+		new_combo_label.queue_free()
+		isShowingCombo = false
+
+func countDeltas(last_delta):
+	var delta_count = 0
+	for i in range(current_roll_history.size() - 1, 0, -1):
+		if (current_roll_history[i] - current_roll_history[i - 1]) == last_delta:
+			delta_count += 1
+		else:
+			break
+	if last_delta != 0:
+		delta_count -= 1
+	return delta_count
 
 func check_repetition():
+	if current_roll_history.size() > 1:
+		var last_number_played = current_roll_history[-1]
+		var last_delta = current_roll_history[-1] - current_roll_history[-2]
+		var combo_mod = 0
+		if last_delta == 0:
+			combo_mod = countDeltas(last_delta)
+		elif current_roll_history.size() > 2:
+			combo_mod = countDeltas(last_delta)
+		if combo_mod > 0:
+			show_combo(combo_mod)
+			current_score += combo_mod
+			current_score_label.text = str(current_score)
+		print("last number played: ", last_number_played)
+		print("last delta: ", last_delta)
+		print("combo mod: ", combo_mod)
+		
 	pass
-
 
 var min_sequence_length = 4
 var max_sequence_length = 4
