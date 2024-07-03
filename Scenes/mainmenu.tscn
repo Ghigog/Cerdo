@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_wuulr"]
 [ext_resource type="PackedScene" uid="uid://cfvdsu8ij2ojg" path="res://Scenes/anim_background.tscn" id="2_udjuv"]
-[ext_resource type="LabelSettings" uid="uid://cdxnurrakudi0" path="res://Assets/mainmenutitle.tres" id="3_qhgwm"]
-[ext_resource type="LabelSettings" uid="uid://b3s5ljo3r85vf" path="res://Assets/mainmenuscore.tres" id="4_n8cvk"]
+[ext_resource type="LabelSettings" uid="uid://cdxnurrakudi0" path="res://Assets/label_styles/mainmenutitle.tres" id="3_qhgwm"]
+[ext_resource type="LabelSettings" uid="uid://b3s5ljo3r85vf" path="res://Assets/label_styles/mainmenuscore.tres" id="4_n8cvk"]
 [ext_resource type="AudioStream" uid="uid://x886jhgfjia2" path="res://Assets/Audio/Music/CerdoSong1.wav" id="4_rlrcr"]
 
 [node name="MainMenu" type="Control"]
