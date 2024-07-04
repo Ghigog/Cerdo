@@ -70,7 +70,7 @@ const dice = [
 
 ## <for-cheating-and-testing>
 var should_force_results = false
-var forced_results = [2,5,2,4,3,4,3]
+var forced_results = [2,4,3,2,2,5,2,4,4,3,4,3,2,3,4,3,4,5,5,6,2,3,3,4,3,3,2,2,2,4,4,3,6,2,6,2,5,6,5,6]
 var forced_position = 0
 ## </for-cheating-and-testing>
 
