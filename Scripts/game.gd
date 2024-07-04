@@ -13,8 +13,9 @@ extends Control
 const COMBO_LABEL = preload("res://Scenes/combo_label.tscn")
 const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
 const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
+const rapha_is_the_best_combo = preload("res://Scenes/combos/rapha_is_the_best_combo.tscn")
+const seductive_glance_combo = preload("res://Scenes/combos/seductive_glance_combo.tscn")
 const CICADA_COMBO = preload("res://Scenes/combos/cicada_combo.tscn")
-
 const hack_the_planet_combo = preload("res://Scenes/combos/hack_the_planet_combo.tscn")
 
 @onready var timer = $Timer
@@ -215,9 +216,9 @@ func show_combo_icon(combo):
 		"fireworks":
 			new_combo_instance = firework_combo.instantiate()
 		"Seductive Glance":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = seductive_glance_combo.instantiate()
 		"Rapha is the best":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = rapha_is_the_best_combo.instantiate()
 		"start dance routine":
 			new_combo_instance = firework_combo.instantiate()
 		"hack the planet":
