@@ -1,11 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://24wqbf14a4lo"]
+[gd_scene load_steps=11 format=3 uid="uid://dulxxhmgl0iym"]
 
-[ext_resource type="Script" path="res://Scenes/combos/combo.gd" id="1_1tg20"]
-[ext_resource type="Texture2D" uid="uid://dqd2mkw6jow6r" path="res://Assets/vectors/fireworks_1.svg" id="2_a5m7p"]
-[ext_resource type="LabelSettings" uid="uid://d3n0jphyruq5" path="res://Assets/label_styles/combo_label_style_2.tres" id="2_nchpj"]
-[ext_resource type="Animation" uid="uid://fgul4cicl26t" path="res://combo_get_animation.res" id="3_k14q8"]
-[ext_resource type="Texture2D" uid="uid://s4osx7w67mcr" path="res://Assets/vectors/fireworks_2.svg" id="3_v4iha"]
-[ext_resource type="Texture2D" uid="uid://lri770abwe0l" path="res://Assets/vectors/fireworks_3.svg" id="4_kyvuf"]
+[ext_resource type="Script" path="res://Scenes/combos/combo.gd" id="1_yim1f"]
+[ext_resource type="LabelSettings" uid="uid://d3n0jphyruq5" path="res://Assets/label_styles/combo_label_style_2.tres" id="2_s0lk7"]
+[ext_resource type="Animation" uid="uid://fgul4cicl26t" path="res://combo_get_animation.res" id="3_l0goe"]
+[ext_resource type="Texture2D" uid="uid://45707acy6y5p" path="res://Assets/vectors/rapha_is_the_best.svg" id="4_q82mw"]
 
 [sub_resource type="Animation" id="Animation_rvq0d"]
 resource_name = "Icon_animation"
@@ -194,7 +192,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Control/FireWorkFill:position:x")
+tracks/2/path = NodePath("Control/RaphaIsTheBest:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -205,7 +203,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/FireWorkFill:position:y")
+tracks/3/path = NodePath("Control/RaphaIsTheBest:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -216,7 +214,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Control/FireWorkFill:rotation")
+tracks/4/path = NodePath("Control/RaphaIsTheBest:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -304,7 +302,7 @@ tracks/11/keys = {
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Control/FireWorkFill:scale:x")
+tracks/12/path = NodePath("Control/RaphaIsTheBest:scale:x")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -315,7 +313,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Control/FireWorkFill:scale:y")
+tracks/13/path = NodePath("Control/RaphaIsTheBest:scale:y")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -384,31 +382,17 @@ _data = {
 "Icon_animation": SubResource("Animation_rvq0d"),
 "Label_Animation": SubResource("Animation_ne1of"),
 "RESET": SubResource("Animation_qrw8q"),
-"combo_get!": ExtResource("3_k14q8")
+"combo_get!": ExtResource("3_l0goe")
 }
 
 [sub_resource type="Gradient" id="Gradient_wuaah"]
-offsets = PackedFloat32Array(0.979532, 1)
-colors = PackedColorArray(0.937255, 0.490196, 0.231373, 1, 0, 0.2, 1, 1)
+offsets = PackedFloat32Array(0.11, 0.979532, 1)
+colors = PackedColorArray(0.568156, 0.470285, 0.261404, 1, 0.975862, 0.802402, 0.613989, 1, 0, 0.2, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qtji8"]
 gradient = SubResource("Gradient_wuaah")
 
-[sub_resource type="Gradient" id="Gradient_wfvt7"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6wmvr"]
-gradient = SubResource("Gradient_wfvt7")
-
-[sub_resource type="Gradient" id="Gradient_6uhpy"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 0.176471, 0.0666667, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3e317"]
-gradient = SubResource("Gradient_6uhpy")
-
-[node name="FireWorkCombo" type="Control"]
+[node name="RaphaIsTheBestCombo" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -419,16 +403,16 @@ offset_top = 191.0
 offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1tg20")
+script = ExtResource("1_yim1f")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 offset_left = -92.0
 offset_top = 7.0
-offset_right = 64.0
+offset_right = 220.0
 offset_bottom = 55.0
-text = "Firework!"
-label_settings = ExtResource("2_nchpj")
+text = "Rapha Is The Best!"
+label_settings = ExtResource("2_s0lk7")
 
 [node name="LabelPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -440,11 +424,11 @@ autoplay = "Label_Animation"
 anchors_preset = 0
 offset_left = 8.0
 offset_top = -3.0
-offset_right = 72.0001
+offset_right = 72.0002
 offset_bottom = 61.0
 pivot_offset = Vector2(32, 32)
 
-[node name="FireWorkFill" type="TextureRect" parent="Control"]
+[node name="RaphaIsTheBest" type="TextureRect" parent="Control"]
 clip_children = 1
 layout_mode = 0
 offset_left = 8.0
@@ -452,49 +436,15 @@ offset_top = -3.0
 offset_right = 71.9998
 offset_bottom = 61.0
 pivot_offset = Vector2(32, 32)
-texture = ExtResource("2_a5m7p")
+texture = ExtResource("4_q82mw")
 expand_mode = 1
 
-[node name="Color" type="TextureRect" parent="Control/FireWorkFill"]
+[node name="Color" type="TextureRect" parent="Control/RaphaIsTheBest"]
 clip_children = 2
 layout_mode = 0
 offset_right = 65.0
 offset_bottom = 65.0
 texture = SubResource("GradientTexture1D_qtji8")
-expand_mode = 1
-
-[node name="FireWorkFill2" type="TextureRect" parent="Control"]
-clip_children = 1
-layout_mode = 0
-offset_right = 63.9999
-offset_bottom = 64.0
-pivot_offset = Vector2(32, 32)
-texture = ExtResource("3_v4iha")
-expand_mode = 1
-
-[node name="Color" type="TextureRect" parent="Control/FireWorkFill2"]
-clip_children = 2
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 65.0
-texture = SubResource("GradientTexture1D_6wmvr")
-expand_mode = 1
-
-[node name="FireWorkFill3" type="TextureRect" parent="Control"]
-clip_children = 1
-layout_mode = 0
-offset_right = 63.9998
-offset_bottom = 64.0
-pivot_offset = Vector2(32, 32)
-texture = ExtResource("4_kyvuf")
-expand_mode = 1
-
-[node name="Color" type="TextureRect" parent="Control/FireWorkFill3"]
-clip_children = 2
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 65.0
-texture = SubResource("GradientTexture1D_3e317")
 expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
