@@ -58,7 +58,6 @@ var random = RandomNumberGenerator.new()
 
 var isShowingCombo: bool = false
 var new_combo_label: Label
-#var new_combo_instance: Node
 
 const cpu_personalities = [
 	RandomCpu,
@@ -69,10 +68,11 @@ const dice = [
 	VanillaD6
 ]
 
-## TEMP TESTING
-#var forced_results = [2,5,2,4,3,4,3]
-#var forced_position = 0
-## TEMP Cheat above
+## <for-cheating-and-testing>
+var should_force_results = false
+var forced_results = [2,5,2,4,3,4,3]
+var forced_position = 0
+## </for-cheating-and-testing>
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -95,12 +95,13 @@ func _on_back_pressed():
 func _on_roll_button_pressed():
 	var dice_instance = dice[Global.player_dice[Global.turn]].new()
 	dice_value = dice_instance.roll()
-	## CHEATING, Below
-	#dice_value = forced_results[forced_position]
-	#forced_position += 1
-	#if forced_position > forced_results.size()-1:
-		#forced_position = 0
-	## Cheating Above
+	## <force-results>
+	if should_force_results:
+		dice_value = forced_results[forced_position]
+		forced_position += 1
+		if forced_position > forced_results.size()-1:
+			forced_position = 0
+	## </force-results>
 	dice_texture.texture = dice_instance.getAsset(dice_value)
 	print(dice_value)
 	current_roll_history.append(dice_value)
