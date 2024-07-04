@@ -83,10 +83,8 @@ const dice = [
 # 6262 - 8080 # http
 # 5656 - 6969 # the best time
 
-## TEMP TESTING
 var forced_results = [2,4,3,2,2,5,2,4,4,3,4,3,2,3,4,3,4,5,5,6,2,3,3,4,3,3,2,2,2,4,4,3,6,2,6,2,5,6,5,6]
 var forced_position = 0
-## TEMP Cheat above
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -109,12 +107,13 @@ func _on_back_pressed():
 func _on_roll_button_pressed():
 	var dice_instance = dice[Global.player_dice[Global.turn]].new()
 	dice_value = dice_instance.roll()
-	## CHEATING, Below
-	dice_value = forced_results[forced_position]
-	forced_position += 1
-	if forced_position > forced_results.size()-1:
-		forced_position = 0
-	## Cheating Above
+	## <force-results>
+	if should_force_results:
+		dice_value = forced_results[forced_position]
+		forced_position += 1
+		if forced_position > forced_results.size()-1:
+			forced_position = 0
+	## </force-results>
 	dice_texture.texture = dice_instance.getAsset(dice_value)
 	print(dice_value)
 	current_roll_history.append(dice_value)
