@@ -1,9 +1,17 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=11 format=3 uid="uid://dulxxhmgl0iym"]
+=======
+[gd_scene load_steps=11 format=3 uid="uid://cngbxxorrcvph"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://Scenes/combos/combo.gd" id="1_yim1f"]
 [ext_resource type="LabelSettings" uid="uid://d3n0jphyruq5" path="res://Assets/label_styles/combo_label_style_2.tres" id="2_s0lk7"]
 [ext_resource type="Animation" uid="uid://fgul4cicl26t" path="res://combo_get_animation.res" id="3_l0goe"]
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://45707acy6y5p" path="res://Assets/vectors/rapha_is_the_best.svg" id="4_q82mw"]
+=======
+[ext_resource type="Texture2D" path="res://Assets/vectors/rapha_is_the_best.svg" id="4_q82mw"]
+>>>>>>> Stashed changes
 
 [sub_resource type="Animation" id="Animation_rvq0d"]
 resource_name = "Icon_animation"

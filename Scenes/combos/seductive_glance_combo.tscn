@@ -1,9 +1,17 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=12 format=3 uid="uid://cht54tlv0nwfq"]
+=======
+[gd_scene load_steps=12 format=3 uid="uid://bex4mo48o8h7r"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://Scenes/combos/combo.gd" id="1_cbr87"]
 [ext_resource type="LabelSettings" uid="uid://d3n0jphyruq5" path="res://Assets/label_styles/combo_label_style_2.tres" id="2_6d2ts"]
 [ext_resource type="Animation" uid="uid://fgul4cicl26t" path="res://combo_get_animation.res" id="3_52tek"]
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://ds017doumpfrx" path="res://Assets/vectors/seductive_glance.svg" id="4_fv3nh"]
+=======
+[ext_resource type="Texture2D" path="res://Assets/vectors/seductive_glance.svg" id="4_fv3nh"]
+>>>>>>> Stashed changes
 
 [sub_resource type="Animation" id="Animation_rvq0d"]
 resource_name = "Icon_animation"
