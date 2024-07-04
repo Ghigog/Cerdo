@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://24wqbf14a4lo"]
+[gd_scene load_steps=21 format=3 uid="uid://cj5pj1xugq2oo"]
 
-[ext_resource type="Script" path="res://Scenes/combos/combo.gd" id="1_1tg20"]
-[ext_resource type="Texture2D" uid="uid://dqd2mkw6jow6r" path="res://Assets/vectors/fireworks_1.svg" id="2_a5m7p"]
-[ext_resource type="LabelSettings" uid="uid://d3n0jphyruq5" path="res://Assets/label_styles/combo_label_style_2.tres" id="2_nchpj"]
-[ext_resource type="Animation" uid="uid://fgul4cicl26t" path="res://combo_get_animation.res" id="3_k14q8"]
-[ext_resource type="Texture2D" uid="uid://s4osx7w67mcr" path="res://Assets/vectors/fireworks_2.svg" id="3_v4iha"]
-[ext_resource type="Texture2D" uid="uid://lri770abwe0l" path="res://Assets/vectors/fireworks_3.svg" id="4_kyvuf"]
+[ext_resource type="Script" path="res://Scenes/combos/combo.gd" id="1_6okhx"]
+[ext_resource type="LabelSettings" uid="uid://d3n0jphyruq5" path="res://Assets/label_styles/combo_label_style_2.tres" id="2_ojlyl"]
+[ext_resource type="Animation" uid="uid://fgul4cicl26t" path="res://combo_get_animation.res" id="3_sk1va"]
+[ext_resource type="Texture2D" uid="uid://dp3sc40s521rk" path="res://Assets/vectors/discoball2.svg" id="4_ta7rg"]
+[ext_resource type="Texture2D" uid="uid://ce04kqea4783y" path="res://Assets/vectors/discoball1.svg" id="5_nqxkl"]
+[ext_resource type="Texture2D" uid="uid://ri0q64ig6q8y" path="res://Assets/Particles/brillo.png" id="6_5fqqj"]
 
 [sub_resource type="Animation" id="Animation_rvq0d"]
 resource_name = "Icon_animation"
@@ -62,6 +62,64 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.8, 0.0525211, 0, 0, 1.06214, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_4vby8"]
+resource_name = "Icon_animation_disco"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(8, -0.25, 0, 0.184774, 39.4425, 118, -0.0152255, -117.327, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-3, -0.25, 0, 0.4, -111.301, -305, 0, 391.417, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.6, 1.33803, 1.902, -0.3, -0.625858, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.5, 7.28619, 0, 0, 1.34129, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.5, 7.39294, 0, 0, 1.06214, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
@@ -167,6 +225,108 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0, 1)
 }
 
+[sub_resource type="Animation" id="Animation_ljxnq"]
+resource_name = "Label_Animation_Disco"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-165, -0.25, 0, 0.4, 74, -230, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(9, -0.25, 0, 0, -270.876, -248, -0.2, 256, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.2, 0.614878, -0.219911, -0.2, -0.32362, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:label_settings:font_color:r")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.771245, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:label_settings:font_color:g")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.157206, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:label_settings:font_color:b")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.76045, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Label:label_settings:font_color:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Label:scale:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.5, 1.11425, 1e-05, 0, 0.931508, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Label:scale:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.5, 1.08802, 1e-05, 0, 0.994869, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
 [sub_resource type="Animation" id="Animation_qrw8q"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -194,7 +354,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Control/FireWorkFill:position:x")
+tracks/2/path = NodePath("Control/Disco1:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -205,7 +365,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/FireWorkFill:position:y")
+tracks/3/path = NodePath("Control/Disco1:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -216,7 +376,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Control/FireWorkFill:rotation")
+tracks/4/path = NodePath("Control/Disco1:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -304,7 +464,7 @@ tracks/11/keys = {
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Control/FireWorkFill:scale:x")
+tracks/12/path = NodePath("Control/Disco1:scale:x")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -315,7 +475,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Control/FireWorkFill:scale:y")
+tracks/13/path = NodePath("Control/Disco1:scale:y")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -382,33 +542,53 @@ tracks/18/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ac5f3"]
 _data = {
 "Icon_animation": SubResource("Animation_rvq0d"),
+"Icon_animation_disco": SubResource("Animation_4vby8"),
 "Label_Animation": SubResource("Animation_ne1of"),
+"Label_Animation_Disco": SubResource("Animation_ljxnq"),
 "RESET": SubResource("Animation_qrw8q"),
-"combo_get!": ExtResource("3_k14q8")
+"combo_get!": ExtResource("3_sk1va")
 }
 
 [sub_resource type="Gradient" id="Gradient_wuaah"]
-offsets = PackedFloat32Array(0.979532, 1)
-colors = PackedColorArray(0.937255, 0.490196, 0.231373, 1, 0, 0.2, 1, 1)
+colors = PackedColorArray(0.964748, 0.792466, 0.63213, 1, 0.51, 0.51, 0.51, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qtji8"]
 gradient = SubResource("Gradient_wuaah")
 
-[sub_resource type="Gradient" id="Gradient_wfvt7"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 0, 1)
+[sub_resource type="Gradient" id="Gradient_o0p7u"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0.501961, 1, 1, 0, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6wmvr"]
-gradient = SubResource("Gradient_wfvt7")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2c0vs"]
+frequency = 0.0005
 
-[sub_resource type="Gradient" id="Gradient_6uhpy"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 0.176471, 0.0666667, 1)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bbfre"]
+color_ramp = SubResource("Gradient_o0p7u")
+noise = SubResource("FastNoiseLite_2c0vs")
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3e317"]
-gradient = SubResource("Gradient_6uhpy")
+[sub_resource type="Gradient" id="Gradient_rr2lr"]
+offsets = PackedFloat32Array(0, 0.532787, 1)
+colors = PackedColorArray(0.58261, 1, 0.551537, 1, 1, 0.785061, 0.845164, 1, 0.729139, 0.819629, 1, 1)
 
-[node name="FireWorkCombo" type="Control"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bla1w"]
+gradient = SubResource("Gradient_rr2lr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jeybt"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 20, 20)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angular_velocity_min = 720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 53.1
+radial_accel_max = 53.2
+scale_min = 0.0
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_bla1w")
+turbulence_enabled = true
+
+[node name="HeartCombo" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -419,7 +599,7 @@ offset_top = 191.0
 offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1tg20")
+script = ExtResource("1_6okhx")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -427,8 +607,8 @@ offset_left = -92.0
 offset_top = 7.0
 offset_right = 64.0
 offset_bottom = 55.0
-text = "Firework!"
-label_settings = ExtResource("2_nchpj")
+text = "Disco!"
+label_settings = ExtResource("2_ojlyl")
 
 [node name="LabelPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -440,11 +620,11 @@ autoplay = "Label_Animation"
 anchors_preset = 0
 offset_left = 8.0
 offset_top = -3.0
-offset_right = 72.0001
+offset_right = 72.0003
 offset_bottom = 61.0
 pivot_offset = Vector2(32, 32)
 
-[node name="FireWorkFill" type="TextureRect" parent="Control"]
+[node name="Disco1" type="TextureRect" parent="Control"]
 clip_children = 1
 layout_mode = 0
 offset_left = 8.0
@@ -452,10 +632,10 @@ offset_top = -3.0
 offset_right = 71.9998
 offset_bottom = 61.0
 pivot_offset = Vector2(32, 32)
-texture = ExtResource("2_a5m7p")
+texture = ExtResource("4_ta7rg")
 expand_mode = 1
 
-[node name="Color" type="TextureRect" parent="Control/FireWorkFill"]
+[node name="Color" type="TextureRect" parent="Control/Disco1"]
 clip_children = 2
 layout_mode = 0
 offset_right = 65.0
@@ -463,39 +643,31 @@ offset_bottom = 65.0
 texture = SubResource("GradientTexture1D_qtji8")
 expand_mode = 1
 
-[node name="FireWorkFill2" type="TextureRect" parent="Control"]
+[node name="Disco2" type="TextureRect" parent="Control"]
 clip_children = 1
 layout_mode = 0
-offset_right = 63.9999
-offset_bottom = 64.0
+offset_left = 8.0
+offset_top = -3.0
+offset_right = 71.9999
+offset_bottom = 61.0
 pivot_offset = Vector2(32, 32)
-texture = ExtResource("3_v4iha")
+texture = ExtResource("5_nqxkl")
 expand_mode = 1
 
-[node name="Color" type="TextureRect" parent="Control/FireWorkFill2"]
+[node name="Color" type="TextureRect" parent="Control/Disco2"]
 clip_children = 2
 layout_mode = 0
 offset_right = 65.0
 offset_bottom = 65.0
-texture = SubResource("GradientTexture1D_6wmvr")
+texture = SubResource("NoiseTexture2D_bbfre")
 expand_mode = 1
 
-[node name="FireWorkFill3" type="TextureRect" parent="Control"]
-clip_children = 1
-layout_mode = 0
-offset_right = 63.9998
-offset_bottom = 64.0
-pivot_offset = Vector2(32, 32)
-texture = ExtResource("4_kyvuf")
-expand_mode = 1
-
-[node name="Color" type="TextureRect" parent="Control/FireWorkFill3"]
-clip_children = 2
-layout_mode = 0
-offset_right = 65.0
-offset_bottom = 65.0
-texture = SubResource("GradientTexture1D_3e317")
-expand_mode = 1
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Control"]
+position = Vector2(37.865, 29.165)
+process_material = SubResource("ParticleProcessMaterial_jeybt")
+texture = ExtResource("6_5fqqj")
+lifetime = 0.1
+explosiveness = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
 root_node = NodePath("../..")

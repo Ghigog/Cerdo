@@ -13,6 +13,7 @@ extends Control
 const COMBO_LABEL = preload("res://Scenes/combo_label.tscn")
 const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
 const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
+const disco_combo = preload("res://Scenes/combos/disco_combo.tscn")
 
 @onready var timer = $Timer
 @onready var delay_timer = $DelayTimer
@@ -68,7 +69,7 @@ const dice = [
 ]
 
 ## TEMP TESTING
-#var forced_results = [2,5,2,4,3,4,3]
+#var forced_results = [4,5,5,6]
 #var forced_position = 0
 ## TEMP Cheat above
 
@@ -215,7 +216,7 @@ func show_combo_icon(combo):
 		"Rapha is the best":
 			new_combo_instance = firework_combo.instantiate()
 		"start dance routine":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = disco_combo.instantiate()
 		"hack the planet":
 			new_combo_instance = firework_combo.instantiate()
 		"cicada":
