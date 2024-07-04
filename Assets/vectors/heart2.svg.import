@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce04kqea4783y"
-path="res://.godot/imported/discoball1.svg-16375f57970b19865febe960132155c8.ctex"
+uid="uid://bcp8y3bpifonh"
+path="res://.godot/imported/heart2.svg-ac13618a472d2f2598efa593c8cbc5e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/vectors/discoball1.svg"
-dest_files=["res://.godot/imported/discoball1.svg-16375f57970b19865febe960132155c8.ctex"]
+source_file="res://Assets/vectors/heart2.svg"
+dest_files=["res://.godot/imported/heart2.svg-ac13618a472d2f2598efa593c8cbc5e5.ctex"]
 
 [params]
 

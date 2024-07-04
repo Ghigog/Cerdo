@@ -614,7 +614,7 @@ label_settings = ExtResource("2_i51eo")
 libraries = {
 "": SubResource("AnimationLibrary_ac5f3")
 }
-autoplay = "Label_Animation"
+autoplay = "Label_Animation_Disco"
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
@@ -674,7 +674,7 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_ac5f3")
 }
-autoplay = "Icon_animation"
+autoplay = "Icon_animation_disco"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

@@ -14,6 +14,9 @@ const COMBO_LABEL = preload("res://Scenes/combo_label.tscn")
 const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
 const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
 const disco_combo = preload("res://Scenes/combos/disco_combo.tscn")
+const heart_combo = preload("res://Scenes/combos/heart_combo.tscn")
+const http_combo = preload("res://Scenes/combos/http_combo.tscn")
+const http2_combo = preload("res://Scenes/combos/http2_combo.tscn")
 
 @onready var timer = $Timer
 @onready var delay_timer = $DelayTimer
@@ -68,9 +71,21 @@ const dice = [
 	VanillaD6
 ]
 
+
+# 2432 - 0420 # leaf
+# 2524 - 0704 # fireworks
+# 4343 -      # Seductive Glance
+# 2343 -      # Rapha is the best
+# 4556 - 5678 # start dance routine
+# 2334 - 1334 # hack the planet
+# 3322 - 3301 # cicada
+# 2443 - 0443 # https
+# 6262 - 8080 # http
+# 5656 - 6969 # the best time
+
 ## TEMP TESTING
-#var forced_results = [4,5,5,6]
-#var forced_position = 0
+var forced_results = [2,4,3,2,2,5,2,4,4,3,4,3,2,3,4,3,4,5,5,6,2,3,3,4,3,3,2,2,2,4,4,3,6,2,6,2,5,6,5,6]
+var forced_position = 0
 ## TEMP Cheat above
 
 # Called when the node enters the scene tree for the first time.
@@ -95,10 +110,10 @@ func _on_roll_button_pressed():
 	var dice_instance = dice[Global.player_dice[Global.turn]].new()
 	dice_value = dice_instance.roll()
 	## CHEATING, Below
-	#dice_value = forced_results[forced_position]
-	#forced_position += 1
-	#if forced_position > forced_results.size()-1:
-		#forced_position = 0
+	dice_value = forced_results[forced_position]
+	forced_position += 1
+	if forced_position > forced_results.size()-1:
+		forced_position = 0
 	## Cheating Above
 	dice_texture.texture = dice_instance.getAsset(dice_value)
 	print(dice_value)
@@ -222,11 +237,11 @@ func show_combo_icon(combo):
 		"cicada":
 			new_combo_instance = firework_combo.instantiate()
 		"https":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = http_combo.instantiate()
 		"http":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = http2_combo.instantiate()
 		"the best time":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = heart_combo.instantiate()
 		_:
 			print("unrecognized combo name")
 	print("new_combo_instance: ", new_combo_instance)
