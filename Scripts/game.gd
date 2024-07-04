@@ -15,6 +15,8 @@ const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
 const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
 const CICADA_COMBO = preload("res://Scenes/combos/cicada_combo.tscn")
 
+const hack_the_planet_combo = preload("res://Scenes/combos/hack_the_planet_combo.tscn")
+
 @onready var timer = $Timer
 @onready var delay_timer = $DelayTimer
 @onready var one_timer = $OneTimer
@@ -218,7 +220,7 @@ func show_combo_icon(combo):
 		"start dance routine":
 			new_combo_instance = firework_combo.instantiate()
 		"hack the planet":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = hack_the_planet_combo.instantiate()
 		"cicada":
 			new_combo_instance = CICADA_COMBO.instantiate()
 		"https":
