@@ -15,6 +15,8 @@ const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
 const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
 const rapha_is_the_best_combo = preload("res://Scenes/combos/rapha_is_the_best_combo.tscn")
 const seductive_glance_combo = preload("res://Scenes/combos/seductive_glance_combo.tscn")
+const CICADA_COMBO = preload("res://Scenes/combos/cicada_combo.tscn")
+const hack_the_planet_combo = preload("res://Scenes/combos/hack_the_planet_combo.tscn")
 
 @onready var timer = $Timer
 @onready var delay_timer = $DelayTimer
@@ -58,7 +60,6 @@ var random = RandomNumberGenerator.new()
 
 var isShowingCombo: bool = false
 var new_combo_label: Label
-#var new_combo_instance: Node
 
 const cpu_personalities = [
 	RandomCpu,
@@ -69,10 +70,11 @@ const dice = [
 	VanillaD6
 ]
 
-## TEMP TESTING
-#var forced_results = [2,5,2,4,3,4,3]
-#var forced_position = 0
-## TEMP Cheat above
+## <for-cheating-and-testing>
+var should_force_results = false
+var forced_results = [2,4,3,2,2,5,2,4,4,3,4,3,2,3,4,3,4,5,5,6,2,3,3,4,3,3,2,2,2,4,4,3,6,2,6,2,5,6,5,6]
+var forced_position = 0
+## </for-cheating-and-testing>
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -95,12 +97,13 @@ func _on_back_pressed():
 func _on_roll_button_pressed():
 	var dice_instance = dice[Global.player_dice[Global.turn]].new()
 	dice_value = dice_instance.roll()
-	## CHEATING, Below
-	#dice_value = forced_results[forced_position]
-	#forced_position += 1
-	#if forced_position > forced_results.size()-1:
-		#forced_position = 0
-	## Cheating Above
+	## <force-results>
+	if should_force_results:
+		dice_value = forced_results[forced_position]
+		forced_position += 1
+		if forced_position > forced_results.size()-1:
+			forced_position = 0
+	## </force-results>
 	dice_texture.texture = dice_instance.getAsset(dice_value)
 	print(dice_value)
 	current_roll_history.append(dice_value)
@@ -219,9 +222,9 @@ func show_combo_icon(combo):
 		"start dance routine":
 			new_combo_instance = firework_combo.instantiate()
 		"hack the planet":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = hack_the_planet_combo.instantiate()
 		"cicada":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = CICADA_COMBO.instantiate()
 		"https":
 			new_combo_instance = firework_combo.instantiate()
 		"http":
