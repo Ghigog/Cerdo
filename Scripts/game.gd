@@ -13,6 +13,7 @@ extends Control
 const COMBO_LABEL = preload("res://Scenes/combo_label.tscn")
 const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
 const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
+const CICADA_COMBO = preload("res://Scenes/combos/cicada_combo.tscn")
 
 @onready var timer = $Timer
 @onready var delay_timer = $DelayTimer
@@ -219,7 +220,7 @@ func show_combo_icon(combo):
 		"hack the planet":
 			new_combo_instance = firework_combo.instantiate()
 		"cicada":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = CICADA_COMBO.instantiate()
 		"https":
 			new_combo_instance = firework_combo.instantiate()
 		"http":
