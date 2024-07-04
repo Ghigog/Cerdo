@@ -78,12 +78,12 @@ const dice = [
 # 2524 - 0704 # fireworks
 # 4343 -      # Seductive Glance
 # 2343 -      # Rapha is the best
-# 4556 - 5678 # start dance routine
+# 4556 - 5678 # start dance routine -- fix particle effects
 # 2334 - 1334 # hack the planet
 # 3322 - 3301 # cicada
 # 2443 - 0443 # https
 # 6262 - 8080 # http
-# 5656 - 6969 # the best time
+# 5656 - 6969 # the best time -- fix particle effects
 
 ## <for-cheating-and-testing>
 var should_force_results = false
@@ -241,9 +241,9 @@ func show_combo_icon(combo):
 		"cicada":
 			new_combo_instance = CICADA_COMBO.instantiate()
 		"https":
-			new_combo_instance = http_combo.instantiate()
-		"http":
 			new_combo_instance = http2_combo.instantiate()
+		"http":
+			new_combo_instance = http_combo.instantiate()
 		"the best time":
 			new_combo_instance = heart_combo.instantiate()
 		_:
