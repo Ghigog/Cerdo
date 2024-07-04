@@ -13,6 +13,10 @@ extends Control
 const COMBO_LABEL = preload("res://Scenes/combo_label.tscn")
 const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
 const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
+const disco_combo = preload("res://Scenes/combos/disco_combo.tscn")
+const heart_combo = preload("res://Scenes/combos/heart_combo.tscn")
+const http_combo = preload("res://Scenes/combos/http_combo.tscn")
+const http2_combo = preload("res://Scenes/combos/http2_combo.tscn")
 const rapha_is_the_best_combo = preload("res://Scenes/combos/rapha_is_the_best_combo.tscn")
 const seductive_glance_combo = preload("res://Scenes/combos/seductive_glance_combo.tscn")
 const CICADA_COMBO = preload("res://Scenes/combos/cicada_combo.tscn")
@@ -69,6 +73,17 @@ const cpu_personalities = [
 const dice = [
 	VanillaD6
 ]
+
+# 2432 - 0420 # leaf
+# 2524 - 0704 # fireworks
+# 4343 -      # Seductive Glance
+# 2343 -      # Rapha is the best
+# 4556 - 5678 # start dance routine
+# 2334 - 1334 # hack the planet
+# 3322 - 3301 # cicada
+# 2443 - 0443 # https
+# 6262 - 8080 # http
+# 5656 - 6969 # the best time
 
 ## <for-cheating-and-testing>
 var should_force_results = false
@@ -220,17 +235,17 @@ func show_combo_icon(combo):
 		"Rapha is the best":
 			new_combo_instance = rapha_is_the_best_combo.instantiate()
 		"start dance routine":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = disco_combo.instantiate()
 		"hack the planet":
 			new_combo_instance = hack_the_planet_combo.instantiate()
 		"cicada":
 			new_combo_instance = CICADA_COMBO.instantiate()
 		"https":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = http_combo.instantiate()
 		"http":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = http2_combo.instantiate()
 		"the best time":
-			new_combo_instance = firework_combo.instantiate()
+			new_combo_instance = heart_combo.instantiate()
 		_:
 			print("unrecognized combo name")
 	print("new_combo_instance: ", new_combo_instance)
