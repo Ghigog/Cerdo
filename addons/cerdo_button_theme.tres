@@ -1,8 +1,10 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://3l60o3vo8vju"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://3l60o3vo8vju"]
 
 [ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="1_ox7ds"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07bx1"]
+content_margin_left = 15.0
+content_margin_right = 15.0
 bg_color = Color(0.211765, 0.211765, 0.180392, 0.392157)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -10,6 +12,8 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rpjv"]
+content_margin_left = 15.0
+content_margin_right = 15.0
 bg_color = Color(0.62, 0.62, 0.5642, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -17,6 +21,8 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ol6o"]
+content_margin_left = 15.0
+content_margin_right = 15.0
 bg_color = Color(1, 1, 0.909804, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -24,13 +30,27 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdkwy"]
+content_margin_left = 15.0
+content_margin_right = 15.0
 bg_color = Color(1, 1, 0.705882, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_io56t"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(0.619608, 0.619608, 0.564706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dug0"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(0.619608, 0.619608, 0.564706, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0elox"]
+content_margin_left = 15.0
+content_margin_right = 15.0
 bg_color = Color(1, 1, 0.909804, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -40,12 +60,21 @@ corner_radius_bottom_left = 20
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_komwo"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a31fa"]
-bg_color = Color(1, 1, 0.909804, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37evw"]
+bg_color = Color(0.619608, 0.619608, 0.564706, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a31fa"]
+bg_color = Color(1, 1, 0.909804, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.203922, 0.203922, 0.203922, 1)
 shadow_color = Color(0, 0, 0, 0)
 
 [resource]
@@ -62,6 +91,8 @@ Button/styles/disabled = SubResource("StyleBoxFlat_07bx1")
 Button/styles/hover = SubResource("StyleBoxFlat_7rpjv")
 Button/styles/normal = SubResource("StyleBoxFlat_0ol6o")
 Button/styles/pressed = SubResource("StyleBoxFlat_wdkwy")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_io56t")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_7dug0")
 OptionButton/colors/font_color = Color(0.203922, 0.203922, 0.203922, 1)
 OptionButton/constants/arrow_margin = 20
 OptionButton/constants/h_separation = 4
@@ -72,4 +103,5 @@ Panel/styles/panel = SubResource("StyleBoxFlat_komwo")
 PopupMenu/colors/font_color = Color(0.203922, 0.203922, 0.203922, 1)
 PopupMenu/constants/v_separation = 30
 PopupMenu/fonts/font = ExtResource("1_ox7ds")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_37evw")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_a31fa")
