@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=3 uid="uid://cqj0yg0a0bvfn"]
+
+[ext_resource type="Script" path="res://Scripts/Background.gd" id="2_051uu"]
+
+[sub_resource type="Animation" id="Animation_rmtby"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1q3wo"]
+resource_name = "movingbg"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1e-05),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-180.125, -102.179)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qtv7e"]
+_data = {
+"RESET": SubResource("Animation_rmtby"),
+"movingbg": SubResource("Animation_1q3wo")
+}
+
+[sub_resource type="Gradient" id="Gradient_rso06"]
+colors = PackedColorArray(0.901961, 0.470588, 0.643137, 1, 0.780392, 0.607843, 0.792157, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ec4fj"]
+frequency = 0.0002
+offset = Vector3(0, 1.55, 0)
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jduto"]
+color_ramp = SubResource("Gradient_rso06")
+noise = SubResource("FastNoiseLite_ec4fj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uss2e"]
+texture = SubResource("NoiseTexture2D_jduto")
+
+[sub_resource type="Theme" id="Theme_y0cm3"]
+Panel/styles/panel = SubResource("StyleBoxTexture_uss2e")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tq4ru"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 25
+border_width_top = 25
+border_width_right = 25
+border_width_bottom = 25
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rctr8"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.901961, 0.466667, 0.643137, 0)
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color(0.203922, 0.203922, 0.203922, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="Theme" id="Theme_sprak"]
+Panel/styles/panel = SubResource("StyleBoxFlat_rctr8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kultp"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.901961, 0.466667, 0.643137, 0)
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color(1, 1, 0.909804, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="Theme" id="Theme_ugr84"]
+Panel/styles/panel = SubResource("StyleBoxFlat_kultp")
+
+[node name="Background" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_051uu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_qtv7e")
+}
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(360, 640)
+theme = SubResource("Theme_y0cm3")
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tq4ru")
+
+[node name="Panel5" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_sprak")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ugr84")

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch01d7d014wl4"]
+[gd_scene load_steps=7 format=3 uid="uid://ch01d7d014wl4"]
 
 [ext_resource type="Script" path="res://Scripts/end_screen.gd" id="1_oob11"]
 [ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="2_5hqbl"]
-[ext_resource type="PackedScene" uid="uid://cfvdsu8ij2ojg" path="res://Scenes/anim_background.tscn" id="3_3xf1s"]
+[ext_resource type="PackedScene" uid="uid://cqj0yg0a0bvfn" path="res://Scenes/new_anim_background.tscn" id="3_rmknr"]
+[ext_resource type="Theme" uid="uid://3l60o3vo8vju" path="res://addons/cerdo_button_theme.tres" id="4_j10ye"]
+[ext_resource type="LabelSettings" uid="uid://cuqtmgbcktie8" path="res://Assets/label_styles/title_text_settings.tres" id="4_x2r4g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4idfx"]
 font = ExtResource("2_5hqbl")
@@ -14,10 +16,6 @@ shadow_size = 87
 shadow_color = Color(0.203922, 0.203922, 0.203922, 1)
 shadow_offset = Vector2(30.41, 29.785)
 
-[sub_resource type="LabelSettings" id="LabelSettings_p5mm6"]
-font = ExtResource("2_5hqbl")
-font_size = 40
-
 [node name="EndScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -27,16 +25,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oob11")
 
-[node name="Background" parent="." instance=ExtResource("3_3xf1s")]
-layout_mode = 1
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Background2" parent="CanvasLayer" instance=ExtResource("3_rmknr")]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_left = 104.0
-offset_top = 164.0
-offset_right = 616.0
-offset_bottom = 1116.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -478.0
+offset_right = 256.0
+offset_bottom = 478.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -45,21 +49,26 @@ label_settings = SubResource("LabelSettings_4idfx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 400)
+[node name="HSeparator2" type="Control" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Message" type="Label" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-label_settings = SubResource("LabelSettings_p5mm6")
+label_settings = ExtResource("4_x2r4g")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="HSeparator" type="Control" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme = ExtResource("4_j10ye")
 text = "Return to Main Menu"
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

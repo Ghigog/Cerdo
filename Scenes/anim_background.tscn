@@ -50,18 +50,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource("1_iodiu")
-expand_mode = 1
-stretch_mode = 5
+expand_mode = 3
 script = ExtResource("2_xsute")
 
 [node name="Background2" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1344.0
-offset_bottom = 2436.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2880.0
+offset_bottom = 5120.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_n70dc")
 expand_mode = 1
-stretch_mode = 5
 
 [node name="Background3" type="TextureRect" parent="."]
 layout_mode = 1
@@ -72,7 +77,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_077qa")
 expand_mode = 1
-stretch_mode = 5
 
 [node name="Background4" type="TextureRect" parent="."]
 layout_mode = 1
@@ -83,7 +87,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_qyk8e")
 expand_mode = 1
-stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Background2")
