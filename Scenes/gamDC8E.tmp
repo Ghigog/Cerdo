@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_sn3b7"]
 [ext_resource type="PackedScene" uid="uid://cqj0yg0a0bvfn" path="res://Scenes/new_anim_background.tscn" id="2_t6e6e"]
 [ext_resource type="LabelSettings" uid="uid://cuqtmgbcktie8" path="res://Assets/label_styles/title_text_settings.tres" id="3_nwpit"]
+[ext_resource type="Texture2D" uid="uid://rnale02jvivo" path="res://Assets/arrow2.png" id="4_hsg11"]
 [ext_resource type="Theme" uid="uid://3l60o3vo8vju" path="res://addons/cerdo_button_theme.tres" id="5_5vm65"]
 [ext_resource type="Texture2D" uid="uid://ri0q64ig6q8y" path="res://Assets/Particles/brillo.png" id="5_862ek"]
-[ext_resource type="Texture2D" uid="uid://dirgso1p2c3m4" path="res://Assets/vectors/cerdopaw.svg" id="5_asgni"]
 [ext_resource type="Texture2D" uid="uid://bifnu3pfagcyv" path="res://Assets/DiceImages/dice1.svg" id="6_tul2l"]
 [ext_resource type="AudioStream" uid="uid://b7eunfn41niwi" path="res://Assets/Audio/Music/CerdoSongBellA.wav" id="7_ygyq3"]
 [ext_resource type="AudioStream" uid="uid://48kvwm6t6dam" path="res://Assets/Audio/Music/CerdoSong2.wav" id="8_ih073"]
@@ -60,12 +60,31 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Back" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(74, 0)
+layout_mode = 2
+
+[node name="Back" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 theme = ExtResource("5_5vm65")
 text = "Return To Menu"
+
+[node name="TotalScoreLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "TOTAL SCORE"
+label_settings = ExtResource("3_nwpit")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -103,7 +122,7 @@ size_flags_horizontal = 4
 [node name="PlayerTurnTexture" type="TextureRect" parent="CanvasLayer/VBoxContainer/PlayerTurnHBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("5_asgni")
+texture = ExtResource("4_hsg11")
 expand_mode = 1
 
 [node name="HSeparator" type="Control" parent="CanvasLayer/VBoxContainer"]
@@ -197,6 +216,10 @@ theme = ExtResource("5_5vm65")
 text = "Roll
 "
 
+[node name="Control3" type="Control" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
@@ -228,7 +251,7 @@ bus = &"Music"
 [node name="Bass2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_nbaip")
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer2/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HoldButton" to="." method="_on_hold_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/RollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

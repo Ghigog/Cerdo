@@ -1,0 +1,75 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://3l60o3vo8vju"]
+
+[ext_resource type="FontFile" uid="uid://bstya2acevkop" path="res://Assets/Itim-Regular.ttf" id="1_ox7ds"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07bx1"]
+bg_color = Color(0.211765, 0.211765, 0.180392, 0.392157)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rpjv"]
+bg_color = Color(0.62, 0.62, 0.5642, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ol6o"]
+bg_color = Color(1, 1, 0.909804, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdkwy"]
+bg_color = Color(1, 1, 0.705882, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0elox"]
+bg_color = Color(1, 1, 0.909804, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_komwo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a31fa"]
+bg_color = Color(1, 1, 0.909804, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0)
+
+[resource]
+Button/colors/font_color = Color(0.203922, 0.203922, 0.203922, 1)
+Button/colors/font_focus_color = Color(0.203922, 0.203922, 0.203922, 1)
+Button/colors/font_hover_color = Color(0.203922, 0.203922, 0.203922, 1)
+Button/colors/font_hover_pressed_color = Color(0.203922, 0.203922, 0.203922, 1)
+Button/colors/font_pressed_color = Color(0.203922, 0.203922, 0.203922, 1)
+Button/colors/icon_disabled_color = Color(0.203922, 0.203922, 0.203922, 0.686275)
+Button/constants/h_separation = 10
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_ox7ds")
+Button/styles/disabled = SubResource("StyleBoxFlat_07bx1")
+Button/styles/hover = SubResource("StyleBoxFlat_7rpjv")
+Button/styles/normal = SubResource("StyleBoxFlat_0ol6o")
+Button/styles/pressed = SubResource("StyleBoxFlat_wdkwy")
+OptionButton/colors/font_color = Color(0.203922, 0.203922, 0.203922, 1)
+OptionButton/constants/arrow_margin = 20
+OptionButton/constants/h_separation = 4
+OptionButton/fonts/font = ExtResource("1_ox7ds")
+OptionButton/icons/arrow = null
+OptionButton/styles/normal = SubResource("StyleBoxFlat_0elox")
+Panel/styles/panel = SubResource("StyleBoxFlat_komwo")
+PopupMenu/colors/font_color = Color(0.203922, 0.203922, 0.203922, 1)
+PopupMenu/constants/v_separation = 30
+PopupMenu/fonts/font = ExtResource("1_ox7ds")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_a31fa")

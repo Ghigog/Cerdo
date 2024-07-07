@@ -1,16 +1,13 @@
 extends Control
-
-@onready var current_score_label = $CanvasLayer/VBoxContainer/HBoxContainer2/CurrentScoreLabel
+@onready var current_score_label = $CanvasLayer/VBoxContainer/CurrentScoreLabel
 @onready var player_turn_h_box_container = $CanvasLayer/VBoxContainer/PlayerTurnHBoxContainer
 @onready var dice_texture = $CanvasLayer/VBoxContainer/CenterContainer/DiceTexture
 
 @onready var player_1_score_label = $CanvasLayer/VBoxContainer/HBoxContainer/Player1ScoreLabel
 @onready var player_2_score_label = $CanvasLayer/VBoxContainer/HBoxContainer/Player2ScoreLabel
-
-@onready var hold_button = $CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton
+@onready var hold_button = $CanvasLayer/VBoxContainer/HoldButton
 @onready var roll_button = $CanvasLayer/VBoxContainer/RollButton
-
-const COMBO_LABEL = preload("res://Scenes/combo_label.tscn")
+const COMBO_LABEL = preload("res://Scenes/combos/combo_label.tscn")
 const firework_combo = preload("res://Scenes/combos/firework_combo.tscn")
 const leaf_combo = preload("res://Scenes/combos/leaf_combo.tscn")
 const disco_combo = preload("res://Scenes/combos/disco_combo.tscn")
@@ -37,8 +34,8 @@ var current_roll_history = []
 
 
 ## EFFECTS
-@onready var hold_particles = $CanvasLayer/VBoxContainer/HBoxContainer2/HoldButton/Control/HoldParticles
 @onready var one_particles = $CanvasLayer/VBoxContainer/CenterContainer/DiceTexture/Control/OneParticles
+@onready var hold_particles = $CanvasLayer/VBoxContainer/HoldButton/Control/HoldParticles
 
 
 var music_stage: int

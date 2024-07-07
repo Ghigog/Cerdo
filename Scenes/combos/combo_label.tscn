@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bknfm0a43182m"]
 
-[ext_resource type="LabelSettings" uid="uid://cvdoft8sbhul1" path="res://Assets/label_styles/combo_label_style.tres" id="1_lipp1"]
+[ext_resource type="LabelSettings" uid="uid://cvdoft8sbhul1" path="res://Assets/label_styles/combo_label_style.tres" id="1_pi67q"]
 
 [node name="ComboLabel" type="Label"]
 anchors_preset = 8
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "Combo +1"
-label_settings = ExtResource("1_lipp1")
+label_settings = ExtResource("1_pi67q")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
